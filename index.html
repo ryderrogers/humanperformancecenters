@@ -112,7 +112,6 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
 </head>
 <body>
 
-</div>
 <div class="values-bg" aria-hidden="true">
   <span style="left:3%;top:6%;transform:rotate(-8deg);">Discipline</span>
   <span style="left:37%;top:4%;transform:rotate(6deg);">Resilience</span>
@@ -353,4 +352,15 @@ form.addEventListener('submit', async function(e) {
   e.preventDefault();
   const data = { name: form.name.value, email: form.email.value, phone: form.phone.value, project_type: form.project_type.value, timeline: form.timeline.value, budget: form.budget.value, message: form.message.value };
   try {
-    const res = await fetch('https://formspree.io/f/xyklyadv', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+    const res = await fetch('https://formspree.io/f/xyklyadv', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.7 }, colors: ['#B8972A', '#F0EBE0', '#DDD0B0', '#ffffff'] });
+      setTimeout(function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 2000);
+    }
+  } catch(err) { alert('Something went wrong. Please email ryder@hpcla.com directly.'); }
+});
+</script>
+</body>
+</html>
