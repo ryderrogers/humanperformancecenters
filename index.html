@@ -107,10 +107,42 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.05); padding: 40px 48px; dis
 .values-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .values-bg span { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: rgba(184,151,42,0.014); text-transform: uppercase; letter-spacing: 0.25em; white-space: nowrap; user-select: none; }
 body > *:not(.values-bg) { position: relative; z-index: 1; }
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+#intro-word {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 10vw, 96px);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  text-align: center;
+}
+#intro-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero, nav, .values-bg { opacity: 0; transition: opacity 0.8s ease; }
+.hero.visible, nav.visible, .values-bg.visible { opacity: 1; }
 </style>
 </head>
 <body>
 
+<div id="intro-overlay">
+  <div id="intro-word"></div>
+</div>
 <div class="values-bg" aria-hidden="true">
   <span style="left:3%;top:6%;transform:rotate(-8deg);">Discipline</span>
   <span style="left:37%;top:4%;transform:rotate(6deg);">Resilience</span>
