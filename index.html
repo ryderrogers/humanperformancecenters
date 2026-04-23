@@ -25,6 +25,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48
 .nav-links { display: flex; gap: 40px; }
 .nav-links a { font-size: 10px; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--off-white); }
+.nav-biosuite { color: var(--gold) !important; position: relative; }
+.nav-biosuite::after { content: '•'; position: absolute; top: -4px; right: -10px; color: var(--gold); font-size: 10px; }
+.nav-biosuite:hover { color: var(--tan) !important; }
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 40px 60px; position: relative; }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(184,151,42,0.06) 0%, transparent 65%); pointer-events: none; }
 .sun-mark { width: 56px; height: 56px; margin-bottom: 32px; opacity: 0; animation: fadeUp 1.2s ease forwards 0.2s; }
@@ -107,7 +110,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.05); padding: 40px 48px; dis
 .values-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .values-bg span { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: rgba(184,151,42,0.014); text-transform: uppercase; letter-spacing: 0.25em; white-space: nowrap; user-select: none; }
 body > *:not(.values-bg) { position: relative; z-index: 1; }
-
 </style>
 </head>
 <body>
@@ -132,6 +134,7 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
     <a href="#services">Services</a>
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
+    <a href="/biosuite/" class="nav-biosuite">BioSuite</a>
     <a href="#inquiry">Inquire</a>
   </div>
 </nav>
@@ -148,10 +151,10 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
     <line x1="51.31" y1="12.69" x2="42.83" y2="21.17" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
     <line x1="21.17" y1="42.83" x2="12.69" y2="51.31" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
   </svg>
-  <p class="hero-eyebrow">Los Angeles &nbsp;&middot;&nbsp; By Inquiry or Referral Only</p>
+  <p class="hero-eyebrow">Los Angeles &nbsp;&middot;&nbsp; By Referral Only</p>
   <h1 class="hero-title">Human Performance<br>Centers</h1>
   <p class="hero-sub">Health Technology For Every Body</p>
-  <a href="#inquiry" class="hero-cta">Get In Touch</a>
+  <a href="#inquiry" class="hero-cta">Inquire</a>
   <p class="helios-tag">A Helios Company</p>
 </section>
 
@@ -165,9 +168,7 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
       <div class="service-item">
         <p class="service-num">01</p>
         <h3 class="service-name">Technology Curation</h3>
-        <p class="service-desc">We identify and source the highest-performing recovery and longevity technologies available. Hypobaric altitude therapy, PEMF, hyperbaric oxygen, photobiomodulation, cold and heat therapy, neurofeedback, advanced diagnostics — selected for your goals, your space, and your community.
-        </p>
-        <p class="service-desc" style="margin-top:12px;font-style:italic;color:var(--gold);font-size:11px;letter-spacing:0.15em;">Full Health Technology Catalog available after NDA.</p>
+        <p class="service-desc">We identify and source the highest-performing recovery and longevity technologies available. Hypobaric altitude therapy, PEMF, hyperbaric oxygen, photobiomodulation, cold and heat therapy, neurofeedback, advanced diagnostics — selected for your goals, your space, and your population.</p>
       </div>
       <div class="service-item">
         <p class="service-num">02</p>
@@ -177,7 +178,7 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
       <div class="service-item">
         <p class="service-num">03</p>
         <h3 class="service-name">Ongoing Advisory</h3>
-        <p class="service-desc">Ongoing advisory is available as a separate engagement. Ryder consults on protocols, usage optimization, and the latest in longevity science and emerging technologies — so your suite stays current, effective, and working at the highest level. The more you understand your own biology, the more powerful you become.</p>
+        <p class="service-desc">Continued consulting on protocols, usage optimization, and emerging technologies. The more you understand your own biology, the more powerful you become. We keep your suite aligned with the latest in longevity science.</p>
       </div>
     </div>
   </section>
@@ -197,10 +198,8 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
       <div class="project-tech">
         <span class="tech-pill">Hyperbaric</span>
         <span class="tech-pill">Red light</span>
-        <span class="tech-pill">Sauna</span>
-        <span class="tech-pill">Cold plunge</span>
-        <span class="tech-pill">Compression</span>
-        <span class="tech-pill">Whole home optimization</span>
+        <span class="tech-pill">Cold therapy</span>
+        <span class="tech-pill">IV protocols</span>
       </div>
     </div>
     <div class="project-card">
@@ -233,7 +232,7 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
         <line x1="4" y1="32" x2="16" y2="32" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
         <line x1="48" y1="32" x2="60" y2="32" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
       </svg>
-      <p style="font-size:10px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">By inquiry or referral only</p>
+      <p style="font-size:10px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">By referral only</p>
       <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--tan);margin-top:10px;">Maximizing your health and happiness is our mission</p>
       <a href="#inquiry" style="display:inline-block;margin-top:24px;font-size:10px;letter-spacing:0.25em;color:var(--gold);border:0.5px solid var(--gold);padding:12px 28px;text-decoration:none;text-transform:uppercase;">Inquire</a>
     </div>
@@ -258,10 +257,11 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
     </div>
     <div class="about-right" style="padding-top:48px;">
       <div class="about-body">
-        <p>Ryder doesn't consult on performance technology from the outside. He has spent nearly a decade operating inside the world's top biohacking and recovery facilities — at Upgrade Labs and StratosphereATC — personally working with every technology he now recommends.</p>
-        <p>A Certified Longevity Coach, Certified Sleep Science Coach, and habits and systems design expert, Ryder holds certifications in many of the technologies he installs. His studies span philosophy, technology management, and positive psychology, including study at an Ivy League institution. His own metrics reflect the depth of the work: testosterone naturally raised to 1,158 ng/dL, HRV consistently in the top 0.01% globally, cellular phase angle of 8.1°, and a biological age running 10 years younger than chronological.</p>
-        <p>He has conducted health protocols for — and competed alongside — Olympians, NCAA champions, UFC fighters, and NFL MVP candidates. He is trusted by political families, celebrities, and C-suite executives. And he has guided people from every walk of life into a better state of health: the elderly, the sick, those with learning disabilities and mental disorders, and everyone in between.</p>
-        <p>Human Performance Centers exists on a single belief — the most powerful recovery and longevity tools in the world should be accessible to anyone who needs them, in any environment. Every engagement is handled personally.</p>
+        <p>Ryder doesn't consult on performance technology from the outside. He has spent nearly a decade inside the world's top biohacking and recovery facilities — operating at Upgrade Labs and StratosphereATC, personally working with every technology he now recommends.</p>
+        <p>His own metrics reflect the work: testosterone naturally raised to 1,158 ng/dL, HRV in the top 0.01% globally, biological age measured at 21. He studied positive psychology at an Ivy League institution, holds a 3.7 GPA from UCSB, and has spent years at the intersection of human health, performance science, and emerging technology.</p>
+        <p>His experience spans the full range of human performance — Olympic athletes, Paralympians, NFL MVP candidates, political families, celebrities, and C-suite executives. He has also dedicated years to working with people navigating health challenges, disabilities, and recovery — because the technology that transforms performance transforms lives at every level.</p>
+        <p>Human Performance Centers exists on a single belief — the most powerful recovery and longevity tools in the world should be accessible to anyone who needs them, in any environment.</p>
+        <p>Engagements are by referral only. Every project is handled personally.</p>
       </div>
     </div>
   </div>
@@ -334,33 +334,21 @@ body > *:not(.values-bg) { position: relative; z-index: 1; }
       
     </form>
     <div class="form-success" id="formSuccess">
-      <p>Your inquiry has been received.</p><p style="font-size:15px;color:var(--tan);margin-top:16px;font-family:'Montserrat',sans-serif;font-weight:300;letter-spacing:0.05em;line-height:1.8;">Ryder reviews every submission personally.<br>You'll hear back soon.</p>
+      <p>Thank you. We'll be in touch within 48 hours.</p>
     </div>
   </div>
 </div>
 
 <footer>
   <p class="footer-left">Human Performance Centers &copy; 2025</p>
-  <p class="footer-right">A Helios Company &nbsp;&middot;&nbsp; Los Angeles &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#403239242532002830232c216e232f2d" style="color:var(--muted);text-decoration:none;"><span class="__cf_email__" data-cfemail="62101b060710220a12010e034c010d0f">[email&#160;protected]</span></a></p>
+  <p class="footer-right">A Helios Company &nbsp;&middot;&nbsp; <a href="/biosuite/" style="color:var(--gold);text-decoration:none;">BioSuite</a> &nbsp;&middot;&nbsp; Los Angeles &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#403239242532002830232c216e232f2d" style="color:var(--muted);text-decoration:none;"><span class="__cf_email__" data-cfemail="62101b060710220a12010e034c010d0f">[email&#160;protected]</span></a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const form = document.getElementById('inquiryForm');
 const success = document.getElementById('formSuccess');
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
   const data = { name: form.name.value, email: form.email.value, phone: form.phone.value, project_type: form.project_type.value, timeline: form.timeline.value, budget: form.budget.value, message: form.message.value };
   try {
-    const res = await fetch('https://formspree.io/f/xyklyadv', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
-    if (res.ok) {
-      form.style.display = 'none';
-      success.style.display = 'block';
-      confetti({ particleCount: 120, spread: 80, origin: { y: 0.7 }, colors: ['#B8972A', '#F0EBE0', '#DDD0B0', '#ffffff'] });
-      setTimeout(function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 2000);
-    }
-  } catch(err) { alert('Something went wrong. Please email ryder@hpcla.com directly.'); }
-});
-</script>
-</body>
-</html>
+    const res = await fetch('https://formspree.io/f/xpwzgqkb', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
