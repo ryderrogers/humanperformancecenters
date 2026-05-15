@@ -28,26 +28,92 @@ html { scroll-behavior:smooth; }
 body { background:var(--dark); color:var(--off-white); font-family:'Montserrat',sans-serif; font-weight:300; overflow-x:hidden; }
 body.locked { overflow:hidden; }
 
-/* ============ PASSWORD GATE ============ */
-#gate { position:fixed; inset:0; z-index:9999; background:var(--dark); color:var(--off-white); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; }
-#gate.hidden { display:none; }
-#gate .gate-mark { width:48px; height:48px; margin-bottom:36px; }
-#gate .gate-eyebrow { font-size:10px; font-weight:500; letter-spacing:0.4em; color:var(--gold); text-transform:uppercase; margin-bottom:20px; }
-#gate h1.gate-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,56px); font-weight:300; letter-spacing:0.05em; color:var(--off-white); margin-bottom:28px; line-height:1.1; text-transform:uppercase; }
-#gate .gate-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--tan); max-width:460px; margin-bottom:48px; line-height:1.5; letter-spacing:0.03em; }
-#gate .gate-form { display:flex; gap:8px; width:100%; max-width:420px; border-bottom:0.5px solid rgba(184,151,42,0.3); padding-bottom:6px; align-items:center; transition:border-color 0.2s; }
-#gate .gate-form.error { border-color:#B71C1C; animation:gateShake 0.4s ease-in-out; }
-@keyframes gateShake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-6px); } 75% { transform:translateX(6px); } }
-#gate input { flex:1; font-family:'Montserrat',sans-serif; font-weight:300; font-size:14px; padding:14px 4px; background:transparent; border:none; outline:none; color:var(--off-white); letter-spacing:0.2em; text-transform:uppercase; }
-#gate input::placeholder { color:var(--muted); letter-spacing:0.2em; }
-#gate button { font-family:'Montserrat',sans-serif; font-weight:400; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; padding:12px 24px; background:transparent; border:0.5px solid var(--gold); color:var(--gold); cursor:pointer; transition:background 0.3s,color 0.3s; }
-#gate button:hover { background:var(--gold); color:var(--dark); }
-#gate .gate-error { min-height:20px; margin-top:18px; font-size:11px; color:#D16C6C; letter-spacing:0.15em; text-transform:uppercase; opacity:0; transition:opacity 0.2s; }
-#gate .gate-error.visible { opacity:1; }
-#gate .gate-footer { margin-top:80px; font-size:10px; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; }
-#gate .gate-footer a { color:var(--muted); text-decoration:none; }
-#gate .gate-footer a:hover { color:var(--gold); }
+<!-- NDA GATE -->
+<style>
+  #nda-gate {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 2rem;
+  }
+  #nda-gate h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  #nda-gate p {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-bottom: 2rem;
+  }
+  #nda-gate input {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    outline: none;
+    margin-bottom: 1rem;
+    width: 240px;
+  }
+  #nda-gate button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: block;
+  }
+  #nda-error {
+    color: #ff5555;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+    display: none;
+  }
+</style>
 
+<div id="nda-gate">
+  <h1>Access required.</h1>
+  <p>This page is shared privately. If you have the access code, please enter it below.<br>Otherwise, please write to ryder@hpcla.com.</p>
+  <input type="password" id="nda-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkNDA()" />
+  <button onclick="checkNDA()">Enter</button>
+  <div id="nda-error">Incorrect code. Try again.</div>
+</div>
+
+<script>
+  function checkNDA() {
+    // Change "YOURCODE" below to whatever password you want
+    const code = "YOURCODE";
+    const val = document.getElementById('nda-input').value.trim();
+    if (val.toLowerCase() === code.toLowerCase()) {
+      document.getElementById('nda-gate').style.display = 'none';
+      sessionStorage.setItem('nda_passed', '1');
+    } else {
+      document.getElementById('nda-error').style.display = 'block';
+    }
+  }
+  // Auto-pass if already authenticated this session
+  if (sessionStorage.getItem('nda_passed') === '1') {
+    document.addEventListener('DOMContentLoaded', function() {
+      const gate = document.getElementById('nda-gate');
+      if (gate) gate.style.display = 'none';
+    });
+  }
+</script>
+<!-- END NDA GATE -->
 /* ============ NAV ============ */
 nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:24px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom, rgba(13,12,10,0.95), transparent); }
 .nav-logo { font-size:10px; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase; text-decoration:none; }
