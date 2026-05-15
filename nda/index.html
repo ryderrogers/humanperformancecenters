@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access Agreement — Human Performance Centers</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .logo-text {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 500;
+    }
+
+    .logo-divider {
+      width: 32px;
+      height: 1px;
+      background: #333;
+      margin: 16px auto;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-bottom: 24px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .agreement-text {
+      font-size: 13px;
+      line-height: 1.75;
+      color: #999;
+    }
+
+    .agreement-text p {
+      margin-bottom: 14px;
+    }
+
+    .agreement-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      color: #ccc;
+      font-weight: 500;
+    }
+
+    .divider {
+      height: 1px;
+      background: #1e1e1e;
+      margin: 28px 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 7px;
+      color: #e0e0e0;
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      border-color: #444;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: #e0e0e0;
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .btn {
+      width: 100%;
+      background: #e8e8e8;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 15px 24px;
+      cursor: pointer;
+      margin-top: 28px;
+      transition: background 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    .btn:hover { background: #fff; }
+    .btn:active { transform: scale(0.99); }
+    .btn:disabled {
+      background: #222;
+      color: #555;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-msg {
+      font-size: 12px;
+      color: #e05555;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: #444;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .footer-note a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    /* Redirect overlay */
+    #redirect-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #0a0a0a;
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #redirect-overlay.visible {
+      display: flex;
+    }
+
+    .redirect-check {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.3s ease forwards;
+    }
+
+    .redirect-check svg {
+      width: 20px;
+      height: 20px;
+      stroke: #888;
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+      animation: drawCheck 0.4s ease 0.2s forwards;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .redirect-text {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 24px 20px; }
+      h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Redirect overlay -->
+<div id="redirect-overlay">
+  <div class="redirect-check">
+    <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 7"/></svg>
+  </div>
+  <div class="redirect-text">Agreement confirmed — redirecting</div>
+</div>
+
+<div class="container" id="main-form">
+
+  <div class="logo">
+    <div class="logo-text">Human Performance Centers</div>
+    <div class="logo-divider"></div>
+    <div class="logo-sub">Private Access</div>
+  </div>
+
+  <h1>Confidentiality Agreement</h1>
+  <p class="subtitle">Required before viewing private content.</p>
+
+  <div class="card">
+    <div class="section-label">Terms of Access</div>
+    <div class="agreement-text">
+      <p>
+        This page contains <span class="highlight">proprietary and confidential information</span> belonging to Human Performance Centers, LLC ("HPC"), a Wyoming limited liability company. Access is granted for evaluation purposes only.
+      </p>
+      <p>
+        By submitting this form, you agree to the following:
+      </p>
+      <p>
+        <span class="highlight">Confidentiality.</span> All information viewed — including product concepts, system architecture, pricing, technology sourcing, vendor relationships, and any materials related to BioSuite, the HPC Technology Catalog, or any HPC platform — is confidential. You agree not to disclose any of it to any third party without prior written consent from HPC.
+      </p>
+      <p>
+        <span class="highlight">No Rights Granted.</span> Viewing this content does not grant you any license, ownership interest, or rights to any intellectual property of HPC. Nothing viewed may be reproduced, copied, or used as the basis for any competing product, platform, or service.
+      </p>
+      <p>
+        <span class="highlight">No Independent Development.</span> For two (2) years from the date of this agreement, you agree not to independently develop or assist in developing any substantially similar system, including any platform integrating biometric data, health technology, or wellness systems for automated health protocol generation.
+      </p>
+      <p>
+        <span class="highlight">Governing Law.</span> This agreement is governed by the laws of the State of Wyoming.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Your Information</div>
+
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="First and last name" autocomplete="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="your@email.com" autocomplete="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="company">Company / Organization <span style="color:#555;text-transform:none;font-weight:400;">(optional)</span></label>
+      <input type="text" id="company" placeholder="Company name" autocomplete="organization" />
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="agree" />
+      <label for="agree" class="checkbox-label">
+        I have read and agree to the confidentiality terms above. I understand that this content is proprietary to Human Performance Centers, LLC and that accessing it binds me to the restrictions stated.
+      </label>
+    </div>
+
+    <div id="error-msg" class="error-msg">Please fill in your name and email, and confirm your agreement.</div>
+
+    <button class="btn" id="submit-btn" onclick="handleSubmit()">Agree &amp; Access Content</button>
+  </div>
+
+  <p class="footer-note">
+    Questions? Contact <a href="mailto:ryder@hpcla.com">ryder@hpcla.com</a><br/>
+    Human Performance Centers, LLC &nbsp;·&nbsp; Wyoming
+  </p>
+
+</div>
+
+<script>
+  const FORMSPREE_URL = "https://formspree.io/f/xyklyadv";
+  const BIOSUITE_URL  = "/biosuite/";
+  const SESSION_KEY   = "hpc_nda_agreed_v1";
+
+  // If already agreed this session, skip to BioSuite
+  try {
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      window.location.replace(BIOSUITE_URL);
+    }
+  } catch(e) {}
+
+  // Disable button until checkbox checked
+  document.getElementById('agree').addEventListener('change', function() {
+    document.getElementById('submit-btn').disabled = !this.checked;
+  });
+  document.getElementById('submit-btn').disabled = true;
+
+  function handleSubmit() {
+    const name    = document.getElementById('fullname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const agreed  = document.getElementById('agree').checked;
+    const errMsg  = document.getElementById('error-msg');
+
+    if (!name || !email || !agreed) {
+      errMsg.style.display = 'block';
+      return;
+    }
+
+    errMsg.style.display = 'none';
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Processing…';
+    btn.disabled = true;
+
+    const timestamp = new Date().toISOString();
+    const payload = {
+      name, email, company,
+      agreed: true,
+      timestamp,
+      page: window.location.href,
+      userAgent: navigator.userAgent
+    };
+
+    // Set session flag immediately — user gets through regardless of network
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch(e) {}
+
+    // Fire to Formspree for your records
+    fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+
+    // Show confirmation overlay then redirect
+    document.getElementById('main-form').style.opacity = '0';
+    document.getElementById('main-form').style.transition = 'opacity 0.25s ease';
+    document.getElementById('redirect-overlay').classList.add('visible');
+
+    setTimeout(function() {
+      window.location.replace(BIOSUITE_URL);
+    }, 1200);
+  }
+</script>
+
+</body>
+</html>
