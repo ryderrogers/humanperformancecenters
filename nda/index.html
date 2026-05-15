@@ -357,13 +357,15 @@
 </div>
 
 <script>
-  const FORMSPREE_URL = "https://formspree.io/f/xyklyadv";
-  const BIOSUITE_URL  = "/biosuite/";
-  const SESSION_KEY   = "hpc_nda_agreed_v1";
+  // ─── CONFIGURE ───────────────────────────────────────────────────────
+  const FORMSPREE_URL    = "https://formspree.io/f/xyklyadv";
+  const BIOSUITE_URL     = "/biosuite";          // path to your BioSuite page
+  const SESSION_KEY      = "hpc_nda_agreed_v1";  // must match biosuite.html
+  // ─────────────────────────────────────────────────────────────────────
 
-  // If already agreed this session, skip to BioSuite
+  // If they already agreed this session, skip straight to BioSuite
   try {
-    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    if (localStorage.getItem(SESSION_KEY) === "1") {
       window.location.replace(BIOSUITE_URL);
     }
   } catch(e) {}
@@ -401,17 +403,18 @@
       userAgent: navigator.userAgent
     };
 
-    // Set session flag immediately — user gets through regardless of network
-    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch(e) {}
+    // Set session flag immediately — redirect regardless of fetch result
+    // so a network blip never blocks the user after they've agreed.
+    try { localStorage.setItem(SESSION_KEY, "1"); } catch(e) {}
 
-    // Fire to Formspree for your records
+    // Fire-and-forget to Formspree for your records
     fetch(FORMSPREE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     }).catch(() => {});
 
-    // Show confirmation overlay then redirect
+    // Show confirmation overlay, then redirect
     document.getElementById('main-form').style.opacity = '0';
     document.getElementById('main-form').style.transition = 'opacity 0.25s ease';
     document.getElementById('redirect-overlay').classList.add('visible');
