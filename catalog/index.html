@@ -28,26 +28,6 @@ html { scroll-behavior:smooth; }
 body { background:var(--dark); color:var(--off-white); font-family:'Montserrat',sans-serif; font-weight:300; overflow-x:hidden; }
 body.locked { overflow:hidden; }
 
-/* ============ PASSWORD GATE ============ */
-#gate { position:fixed; inset:0; z-index:9999; background:var(--dark); color:var(--off-white); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; }
-#gate.hidden { display:none; }
-#gate .gate-mark { width:48px; height:48px; margin-bottom:36px; }
-#gate .gate-eyebrow { font-size:10px; font-weight:500; letter-spacing:0.4em; color:var(--gold); text-transform:uppercase; margin-bottom:20px; }
-#gate h1.gate-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,56px); font-weight:300; letter-spacing:0.05em; color:var(--off-white); margin-bottom:28px; line-height:1.1; text-transform:uppercase; }
-#gate .gate-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--tan); max-width:460px; margin-bottom:48px; line-height:1.5; letter-spacing:0.03em; }
-#gate .gate-form { display:flex; gap:8px; width:100%; max-width:420px; border-bottom:0.5px solid rgba(184,151,42,0.3); padding-bottom:6px; align-items:center; transition:border-color 0.2s; }
-#gate .gate-form.error { border-color:#B71C1C; animation:gateShake 0.4s ease-in-out; }
-@keyframes gateShake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-6px); } 75% { transform:translateX(6px); } }
-#gate input { flex:1; font-family:'Montserrat',sans-serif; font-weight:300; font-size:14px; padding:14px 4px; background:transparent; border:none; outline:none; color:var(--off-white); letter-spacing:0.2em; text-transform:uppercase; }
-#gate input::placeholder { color:var(--muted); letter-spacing:0.2em; }
-#gate button { font-family:'Montserrat',sans-serif; font-weight:400; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; padding:12px 24px; background:transparent; border:0.5px solid var(--gold); color:var(--gold); cursor:pointer; transition:background 0.3s,color 0.3s; }
-#gate button:hover { background:var(--gold); color:var(--dark); }
-#gate .gate-error { min-height:20px; margin-top:18px; font-size:11px; color:#D16C6C; letter-spacing:0.15em; text-transform:uppercase; opacity:0; transition:opacity 0.2s; }
-#gate .gate-error.visible { opacity:1; }
-#gate .gate-footer { margin-top:80px; font-size:10px; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; }
-#gate .gate-footer a { color:var(--muted); text-decoration:none; }
-#gate .gate-footer a:hover { color:var(--gold); }
-
 /* ============ NAV ============ */
 nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:24px 48px; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(to bottom, rgba(13,12,10,0.95), transparent); }
 .nav-logo { font-size:10px; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase; text-decoration:none; }
@@ -140,31 +120,22 @@ footer { border-top:0.5px solid rgba(255,255,255,0.05); padding:40px 48px; displ
 </style>
 </head>
 <body class="locked">
-
-<!-- ============ PASSWORD GATE ============ -->
-<div id="gate">
-  <svg class="gate-mark" viewBox="0 0 64 64" fill="none">
-    <circle cx="32" cy="32" r="10" fill="#B8972A"/>
-    <line x1="32" y1="4" x2="32" y2="16" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="32" y1="48" x2="32" y2="60" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="4" y1="32" x2="16" y2="32" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="48" y1="32" x2="60" y2="32" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="12.69" y1="12.69" x2="21.17" y2="21.17" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="42.83" y1="42.83" x2="51.31" y2="51.31" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="51.31" y1="12.69" x2="42.83" y2="21.17" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-    <line x1="21.17" y1="42.83" x2="12.69" y2="51.31" stroke="#B8972A" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-  <div class="gate-eyebrow">HPC Technology Catalog &middot; 2026</div>
-  <h1 class="gate-title">Access Required</h1>
-  <p class="gate-sub">This catalog is shared privately. If you have the access code, please enter it below. Otherwise, please write to ryder@hpcla.com.</p>
-  <form id="gateForm" class="gate-form" autocomplete="off">
-    <input type="password" id="gateInput" placeholder="Access Code" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required />
-    <button type="submit">Enter</button>
-  </form>
-  <div id="gateError" class="gate-error">Incorrect code</div>
-  <div class="gate-footer">Human Performance Centers &nbsp;&middot;&nbsp; <a href="/">hpcla.com</a></div>
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;">
+  <p style="font-size:11px;letter-spacing:5px;color:#B8972A;text-transform:uppercase;margin-bottom:16px;font-family:sans-serif;">HPC Technology Catalog · Private</p>
+  <h1 style="font-size:48px;font-weight:700;color:#fff;margin-bottom:24px;font-family:sans-serif;">Access required.</h1>
+  <p style="color:#BEBAAF;margin-bottom:48px;max-width:400px;font-family:sans-serif;line-height:1.6;">This page requires a confidentiality agreement before viewing.</p>
+  <a href="/nda/" style="background:#B8972A;color:#000;padding:16px 32px;border-radius:999px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-family:sans-serif;">Review &amp; Sign Agreement</a>
 </div>
-
+<script>
+(function(){
+  var preview = window.location.search.indexOf("preview=1") !== -1;
+  var agreed = false;
+  try { agreed = localStorage.getItem("hpc_nda_agreed_v1") === "1"; } catch(e) {}
+  if (agreed || preview) {
+    document.getElementById("gate").style.display = "none";
+  }
+})();
+</script>
 <!-- ============ NAV ============ -->
 <nav>
   <a href="/" class="nav-logo">HPC</a>
@@ -863,39 +834,6 @@ footer { border-top:0.5px solid rgba(255,255,255,0.05); padding:40px 48px; displ
   <p class="footer-left">Human Performance Centers &copy; 2026</p>
   <p class="footer-right">A Helios Company &nbsp;&middot;&nbsp; Technology Catalog Edition 2026 &nbsp;&middot;&nbsp; <a href="mailto:ryder@hpcla.com">ryder@hpcla.com</a></p>
 </footer>
-
-<script>
-  var GATE_PASSWORD = "sunrise";
-  (function() {
-    var STORAGE_KEY = "hpc_catalog_unlocked_v1";
-    var gate = document.getElementById("gate");
-    var form = document.getElementById("gateForm");
-    var input = document.getElementById("gateInput");
-    var error = document.getElementById("gateError");
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY) === "1") { unlock(); return; }
-    } catch (e) {}
-    setTimeout(function() { input.focus(); }, 100);
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      var entered = input.value.trim().toLowerCase();
-      if (entered === GATE_PASSWORD.toLowerCase()) {
-        try { sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
-        unlock();
-      } else {
-        error.classList.add("visible");
-        form.classList.add("error");
-        input.value = "";
-        setTimeout(function() { form.classList.remove("error"); }, 500);
-        input.focus();
-      }
-    });
-    function unlock() {
-      gate.classList.add("hidden");
-      document.body.classList.remove("locked");
-    }
-  })();
-</script>
 
 </body>
 </html>
