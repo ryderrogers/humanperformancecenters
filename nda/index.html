@@ -359,7 +359,7 @@
 <script>
   // ─── CONFIGURE ───────────────────────────────────────────────────────
   const FORMSPREE_URL    = "https://formspree.io/f/xyklyadv";
-  const BIOSUITE_URL     = "/biosuite";          // path to your BioSuite page
+    const BIOSUITE_URL    = (new URLSearchParams(window.location.search)).get('from') || "/biosuite/";  // returns visitor to their origin page
   const SESSION_KEY      = "hpc_nda_agreed_v1";  // must match biosuite.html
   // ─────────────────────────────────────────────────────────────────────
 
