@@ -366,11 +366,44 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.05); padding: 40px 48px; dis
   <p class="footer-right">A Helios Company &nbsp;&middot;&nbsp; <a href="/biosuite/" style="color:var(--gold);text-decoration:none;">BioSuite</a> &nbsp;&middot;&nbsp; <a href="/catalog/" style="color:var(--tan);text-decoration:none;">Catalog</a> &nbsp;&middot;&nbsp; Los Angeles &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#403239242532002830232c216e232f2d" style="color:var(--muted);text-decoration:none;"><span class="__cf_email__" data-cfemail="62101b060710220a12010e034c010d0f">[email&#160;protected]</span></a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const form = document.getElementById('inquiryForm');
-const success = document.getElementById('formSuccess');
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const data = { name: form.name.value, email: form.email.value, phone: form.phone.value, project_type: form.project_type.value, timeline: form.timeline.value, budget: form.budget.value, message: form.message.value };
-  try {
-    const res = await fetch('https://formspree.io/f/xpwzgqkb', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+<script>
+(function(){
+  const form = document.getElementById('inquiryForm');
+  const success = document.getElementById('formSuccess');
+  if (!form) return;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalLabel = submitBtn ? submitBtn.textContent : 'Submit inquiry';
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      project_type: form.project_type.value,
+      timeline: form.timeline.value,
+      budget: form.budget.value,
+      message: form.message.value
+    };
+    try {
+      const res = await fetch('https://formspree.io/f/xpwzgqkb', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        if (success) success.style.display = 'block';
+        form.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+      alert('Sorry, your inquiry could not be sent. Please email ryder@hpcla.com directly.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
