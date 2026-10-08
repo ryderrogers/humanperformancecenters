@@ -43,7 +43,7 @@
   section.hero { padding:48px 0 56px; }
   .hero h1 { margin-bottom:20px; font-size:clamp(36px,4.3vw,62px); }
   .hero-sub { font-size:clamp(20px,2.3vw,26px); font-style:italic; color:var(--charcoal); max-width:1100px; line-height:1.4; margin-bottom:26px; }
-  .hero-meta { display:flex; gap:16px 40px; flex-wrap:wrap; justify-content:space-between; font-size:12px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; font-weight:600; padding-top:28px; margin-top:36px; border-top:1px solid var(--rule); }
+  .hero-meta { display:flex; gap:16px 40px; flex-wrap:wrap; justify-content:flex-start; font-size:12px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; font-weight:600; padding-top:28px; margin-top:36px; border-top:1px solid var(--rule); }
   @media(max-width:900px) { .hero-meta { justify-content:flex-start; } }
   .hero-meta span::before { content:""; display:inline-block; width:6px; height:6px; background:var(--gold); border-radius:50%; margin-right:10px; vertical-align:middle; }
   .hero-image { width:100%; height:auto; max-height:min(560px,62vh); object-fit:cover; object-position:center 60%; display:block; border-radius:10px; margin-top:8px; box-shadow:0 30px 80px -20px rgba(0,0,0,0.28),0 10px 30px -10px rgba(0,0,0,0.15); }
@@ -69,6 +69,8 @@
   @media(max-width:900px) { .steps { grid-template-columns:1fr 1fr; } }
   @media(max-width:560px) { .steps { grid-template-columns:1fr; } }
   .tier-custom { margin-top:20px; padding:14px 16px; border:1px dashed var(--gold); border-radius:8px; font-size:13px; line-height:1.5; color:var(--grey); }
+  .stats.hero-stats { grid-template-columns:repeat(4,1fr); margin-top:40px; padding-top:36px; }
+  @media(max-width:900px) { .stats.hero-stats { grid-template-columns:1fr 1fr; } }
   section.concept { padding:80px 0; border-top:1px solid var(--rule); }
   .concept-photos img { aspect-ratio:1/1 !important; }
   .concept-image { width:100%; aspect-ratio:21/9; object-fit:cover; object-position:center 55%; border-radius:10px; display:block; margin:4px 0 0; box-shadow:0 20px 60px -15px rgba(0,0,0,0.25); }
@@ -89,7 +91,10 @@
   .spec-content { font-size:16px; color:var(--dark); font-weight:500; line-height:1.6; }
   @media(max-width:720px) { .spec-grid { grid-template-columns:1fr; } }
 
-  .finishes { display:grid; grid-template-columns:1fr 1fr; gap:0; margin:48px 0 0; border-radius:10px; overflow:hidden; box-shadow:0 20px 60px -10px rgba(0,0,0,0.18); }
+  .finishes-head { margin:64px 0 0; }
+  .sub-eyebrow-dark { font-size:11px; letter-spacing:4px; color:var(--gold); font-weight:700; text-transform:uppercase; margin-bottom:10px; }
+  .finishes-title { font-size:clamp(24px,2.6vw,34px); font-weight:700; letter-spacing:-0.01em; margin:0; }
+  .finishes { display:grid; grid-template-columns:1fr 1fr; gap:0; margin:24px 0 0; border-radius:10px; overflow:hidden; box-shadow:0 20px 60px -10px rgba(0,0,0,0.18); }
   .finish { display:flex; flex-direction:column; }
   .finish img { width:100%; aspect-ratio:566/381; object-fit:cover; display:block; }
   .finish-body { padding:36px 40px 40px; flex-grow:1; }
@@ -101,7 +106,7 @@
   .finish-desc { font-size:15px; line-height:1.6; margin:0; color:var(--grey); }
   .finish.noir .finish-desc { color:#BEBAAF; }
   .finish-note { margin:14px 0 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--grey); }
-  .permit { margin-top:-16px; margin-bottom:8px; padding:24px 28px; border-left:3px solid var(--gold); background:rgba(184,151,42,0.07); border-radius:4px; }
+  .permit { margin-top:40px; margin-bottom:8px; padding:24px 28px; border-left:3px solid var(--gold); background:rgba(184,151,42,0.07); border-radius:4px; }
   .permit-label { font-size:11px; letter-spacing:3px; font-weight:700; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
   .permit p { margin:0; font-size:16px; color:var(--dark); font-weight:500; }
   @media(max-width:720px) { .finishes { grid-template-columns:1fr; } .finish-body { padding:28px 24px 32px; } }
@@ -264,7 +269,6 @@
       <span class="brand-name">Biosuite</span>
     </div>
     <div class="nav-links">
-      <a href="#concept">Concept</a>
       <a href="#technology">Technology</a>
       <a href="#architecture">Architecture</a>
       <a href="#tiers">Tiers</a>
@@ -278,29 +282,13 @@
   <div class="container">
     <div class="eyebrow">Biosuite™ · by Human Performance Centers</div>
     <h1>The world&apos;s most advanced wellness home.</h1>
-    <p class="hero-sub">A mobile, industrial-quality health optimization center, delivered to your home or business. Designed in Los Angeles. Built in the USA. Fully customizable, from the layout to the technology.</p>
+    <p class="hero-sub">Your home, reimagined as a health optimization center. A mobile, industrial-quality wellness residence delivered to your home or business &mdash; designed in Los Angeles, built in the USA, and fully customizable from the layout to the technology.</p>
     <div class="cta-row">
       <a class="btn btn-dark" href="#inquiry" data-interest="A personal residence">Design Your Biosuite</a>
       <a class="btn btn-line" href="#opportunity">Explore the Investment</a>
     </div>
     <img class="hero-image" src="biosuite-hero.jpg" alt="Biosuite — cinematic exterior at dusk" />
-    <div class="hero-meta">
-      <span>350+ sq ft</span>
-      <span>Permittable as an ADU</span>
-      <span>Solar + Battery Compatible</span>
-      <span>Expandable into Larger Modular Structures</span>
-    </div>
-  </div>
-</section>
-
-<section id="concept" class="concept">
-  <div class="container">
-    <div class="eyebrow">The Concept</div>
-    <h2>Your home.<br>Reimagined as a health optimization center.</h2>
-    <hr class="hairline" />
-    <p class="lede">Biosuite integrates elite health technology into a stunning, mobile, industrially powered home and office, delivered to your property or business. The transformation begins at the cellular level — and compounds every single day you live inside it.</p>
-    <img class="concept-image" src="concept-dusk-redlight.jpg" alt="A Biosuite at dusk, red light therapy glowing inside" loading="lazy" />
-    <div class="stats">
+    <div class="stats hero-stats">
       <div>
         <div class="stat-label">Footprint</div>
         <div class="stat-value">350<span style="font-size:0.5em;color:var(--grey);">+ sq ft</span></div>
@@ -316,9 +304,17 @@
         <div class="stat-value">24/7</div>
         <div class="stat-desc">Passive health optimization, continuously</div>
       </div>
+      <div>
+        <div class="stat-label">Permitting</div>
+        <div class="stat-value">ADU</div>
+        <div class="stat-desc">Permittable in San Diego &amp; Los Angeles Counties</div>
+      </div>
     </div>
-    
-
+    <div class="hero-meta">
+      <span>Solar + Battery Compatible</span>
+      <span>Expandable into Larger Modular Structures</span>
+      <span>Delivered to Your Home or Business</span>
+    </div>
   </div>
 </section>
 
@@ -426,6 +422,10 @@
       <img src="nokken-bedroom.jpg" alt="Biosuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
     </div>
     <p class="arch-copy">Scandinavian design &mdash; warm wood, clean lines, calm light &mdash; meets the California way of living: indoor&ndash;outdoor flow, open glass, rooftop and outdoor decks, and solar-ready power. Every Biosuite is built on an industrial-grade, relocatable structure, engineered to last and fully customizable from the layout to the technology, with health-conscious materials in every component.</p>
+    <div class="finishes-head">
+      <div class="sub-eyebrow-dark">The Finishes</div>
+      <h3 class="finishes-title">Two signature styles. Every detail, yours to define.</h3>
+    </div>
     <div class="finishes">
       <div class="finish noir">
         <img src="finish-noir.jpg" alt="Noir finish — smoked wood kitchen and stone bathroom" loading="lazy" />
@@ -445,7 +445,6 @@
       </div>
     </div>
     <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
-    <img src="unit-at-night.jpg" alt="Biosuite at night — rooftop deck, barrel sauna, and spa" loading="lazy" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
     <div class="permit">
       <div class="permit-label">California Permitting</div>
       <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
