@@ -307,8 +307,8 @@
       </div>
       <div>
         <div class="stat-label">Permitting</div>
-        <div class="stat-value">ADU</div>
-        <div class="stat-desc">Permittable in San Diego &amp; Los Angeles Counties</div>
+        <div class="stat-value">ADU + SFH</div>
+        <div class="stat-desc">Single-family home or ADU in San Diego County and many other areas of the country</div>
       </div>
     </div>
     <div class="hero-meta">
@@ -448,7 +448,7 @@
     <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
     <div class="permit">
       <div class="permit-label">California Permitting</div>
-      <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
+      <p>Permittable as a single-family home or ADU in San Diego County and many other areas of the country, and as an ADU in Los Angeles County.</p>
     </div>
     <div class="spec-grid">
       <div class="spec-item">
@@ -577,10 +577,6 @@
       <div class="step"><div class="step-num">05</div><div class="step-name">Optimize</div><p class="step-desc">Personalized protocols and training so every system performs.</p></div>
       </div>
     </div>
-    <div class="cta-row section-cta">
-      <a class="btn btn-dark" href="#inquiry" data-interest="A personal residence">Book a Discovery Call</a>
-      <a class="btn btn-line" href="#technology">Review the Technology</a>
-    </div>
   </div>
 </section>
 
@@ -612,11 +608,11 @@
     <p>Every Biosuite begins with a no-cost discovery call with the founder. Whether it&#x2019;s for your home, your business, or your portfolio, tell us what you&#x2019;re building toward and we will be in touch within two business days.</p>
     <form class="inquiry-form" onsubmit="return submitBiosuiteInquiry(event)">
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your full name" required />
+      <input type="text" id="name" name="name" autocomplete="name" placeholder="Your full name" required />
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="you@email.com" required />
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required />
       <label for="phone">Phone (optional)</label>
-      <input type="tel" id="phone" name="phone" placeholder="For priority callback" />
+      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="For priority callback" />
       <label for="interest">I am interested in Biosuite as</label>
       <select id="interest" name="interest" required>
         <option value="">Select one...</option>
