@@ -61,19 +61,22 @@
   .spec-content { font-size:16px; color:var(--dark); font-weight:500; line-height:1.6; }
   @media(max-width:720px) { .spec-grid { grid-template-columns:1fr; } }
 
-  .finishes { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:48px 0 8px; }
-  .finish { padding:36px 32px; border-radius:10px; border:1px solid var(--rule); }
-  .finish.noir { background:var(--dark); color:var(--paper); border-color:#2a2a2a; }
-  .finish.cabin { background:#F7F1E6; }
-  .finish-label { font-size:11px; letter-spacing:3px; font-weight:700; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
-  .finish-name { font-size:28px; font-weight:700; margin-bottom:10px; }
+  .finishes { display:grid; grid-template-columns:1fr 1fr; gap:0; margin:48px 0 0; border-radius:10px; overflow:hidden; box-shadow:0 20px 60px -10px rgba(0,0,0,0.18); }
+  .finish { display:flex; flex-direction:column; }
+  .finish img { width:100%; aspect-ratio:566/381; object-fit:cover; display:block; }
+  .finish-body { padding:36px 40px 40px; flex-grow:1; }
+  .finish.noir .finish-body { background:#151310; color:var(--paper); }
+  .finish.hearth .finish-body { background:#F2ECE1; }
+  .finish-label { font-size:11px; letter-spacing:3px; font-weight:700; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .finish-name { font-size:clamp(36px,4vw,52px); font-weight:300; letter-spacing:-0.01em; line-height:1.05; margin-bottom:14px; }
   .finish.noir .finish-name { color:var(--paper); }
   .finish-desc { font-size:15px; line-height:1.6; margin:0; color:var(--grey); }
   .finish.noir .finish-desc { color:#BEBAAF; }
+  .finish-note { margin:14px 0 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--grey); }
   .permit { margin-top:40px; padding:24px 28px; border-left:3px solid var(--gold); background:rgba(184,151,42,0.07); border-radius:4px; }
   .permit-label { font-size:11px; letter-spacing:3px; font-weight:700; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
   .permit p { margin:0; font-size:16px; color:var(--dark); font-weight:500; }
-  @media(max-width:720px) { .finishes { grid-template-columns:1fr; } }
+  @media(max-width:720px) { .finishes { grid-template-columns:1fr; } .finish-body { padding:28px 24px 32px; } }
   section.technology { padding:96px 0; background:var(--dark); color:var(--paper); }
   section.technology h2, section.technology h3 { color:var(--paper); }
   section.technology > .container > p { color:#BEBAAF; }
@@ -102,6 +105,10 @@
   .tier-features { list-style:none; padding:0; margin:0; flex-grow:1; }
   .tier-features li { padding:8px 0 8px 24px; position:relative; font-size:14px; color:var(--grey); line-height:1.5; }
   .tier-features li::before { content:"—"; position:absolute; left:0; color:var(--gold); font-weight:700; }
+  .tier-features li.tier-group { color:var(--dark); font-weight:600; }
+  .tier-card.featured .tier-features li.tier-group { color:var(--paper); }
+  .tier-features li.tier-sub { padding-left:44px; }
+  .tier-features li.tier-sub::before { content:"+"; left:24px; }
   .tier-fine { margin-top:48px; font-size:13px; color:var(--grey); max-width:720px; font-style:italic; line-height:1.6; }
 
   section.opportunity { padding:96px 0; background:var(--paper); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
@@ -188,8 +195,8 @@
       <a href="#concept">Concept</a>
       <a href="#architecture">Architecture</a>
       <a href="#technology">Technology</a>
-      <a href="#opportunity">Opportunity</a>
       <a href="#tiers">Tiers</a>
+      <a href="#opportunity">Opportunity</a>
     </div>
     <a class="nav-cta" href="#inquiry">Inquire</a>
   </div>
@@ -236,7 +243,7 @@
     <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:18px;">
       <img src="nokken-bike.jpg" alt="BioSuite exterior — vertical slat cladding" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
       <img src="nokken-ladder.jpg" alt="BioSuite exterior — rooftop ladder detail" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="nokken-kitchen.jpg" alt="BioSuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="kitchen-dark.jpg" alt="BioSuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
       <img src="nokken-bedroom.jpg" alt="BioSuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
     </div>
 
@@ -251,16 +258,23 @@
     <p>Each BioSuite is built on an industrial-grade, relocatable structure — timeless, engineered to last, and fully customizable from the layout to the technology. Floor-to-ceiling glass, rooftop and outdoor decks, industrial quality and power. Health-conscious materials in every component of the build.</p>
     <div class="finishes">
       <div class="finish noir">
-        <div class="finish-label">Option One</div>
-        <div class="finish-name">Noir</div>
-        <p class="finish-desc">Dark, modern, and architectural. Matte black surfaces, moody lighting, and a clean, minimal interior built for focus and recovery.</p>
+        <img src="finish-noir.jpg" alt="Noir finish — smoked wood kitchen and stone bathroom" loading="lazy" />
+        <div class="finish-body">
+          <div class="finish-label">Finish 01 &middot; Dark Modern</div>
+          <div class="finish-name">Noir</div>
+          <p class="finish-desc">Smoked vertical wood, matte black, stone and bronze. Calm, low, and cave-like. Built for deep sleep.</p>
+        </div>
       </div>
-      <div class="finish cabin">
-        <div class="finish-label">Option Two</div>
-        <div class="finish-name">Cabin</div>
-        <p class="finish-desc">Bright, warm, and homey. Natural wood, soft daylight, and an inviting interior that feels like a retreat every day you live in it.</p>
+      <div class="finish hearth">
+        <img src="finish-hearth.jpg" alt="Hearth finish — pale pine living space, bedroom, and cedar bath" loading="lazy" />
+        <div class="finish-body">
+          <div class="finish-label">Finish 02 &middot; Warm Cabin</div>
+          <div class="finish-name">Hearth</div>
+          <p class="finish-desc">Pale pine and cedar, big daylight, natural textiles. Bright, warm, and Scandinavian.</p>
+        </div>
       </div>
     </div>
+    <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
     <div class="permit">
       <div class="permit-label">California Permitting</div>
       <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
@@ -273,7 +287,7 @@
       </div>
       <div class="spec-item">
         <div class="spec-label">The Experience</div>
-        <div class="spec-content">Circadian lighting throughout<br>Hydrogen-rich, filtered water at every tap<br>Grounded surfaces &middot; low-EMF wiring<br>Clean air &middot; non-toxic materials</div>
+        <div class="spec-content">Circadian lighting throughout<br>Structured water at every tap<br>Grounded surfaces &middot; low-EMF wiring<br>Clean air &middot; non-toxic materials</div>
       </div>
       <div class="spec-item">
         <div class="spec-label">Dimensions</div>
@@ -435,6 +449,71 @@
   </div>
 </section>
 
+<section id="tiers" class="tiers">
+  <div class="container">
+    <div class="eyebrow">Configurations</div>
+    <h2>Three paths.<br>One philosophy.</h2>
+    <hr class="hairline" />
+    <p>Every BioSuite starts from the same industrial-grade foundation and ends in a radically different place. Technology selection, material specification, and scope all scale with the owner's goals.</p>
+    <div class="tier-cards">
+      <div class="tier-card">
+        <div class="tier-label">Foundation</div>
+        <div class="tier-name">BioSuite Core</div>
+        <div class="tier-price">Entry configuration</div>
+        <p class="tier-desc">The essentials, done right. A home where the environment itself works for you &mdash; light, water, air, sleep, and recovery &mdash; every hour of the day.</p>
+        <ul class="tier-features">
+          <li>350+ sq ft main level + loft space</li>
+          <li>Noir or Hearth finish</li>
+          <li>Health-conscious kitchen &amp; bathroom</li>
+          <li>Sleep-optimized master bedroom</li>
+          <li>Circadian lighting</li>
+          <li>Structured water</li>
+          <li>Grounded floors</li>
+          <li>Clean air</li>
+          <li>Low-EMF wiring</li>
+          <li>Ozonated laundry</li>
+          <li>Therabody recovery suite</li>
+          <li>Genetic optimization testing kit</li>
+          <li>Biometric wearable</li>
+          <li>Solar + battery compatible</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-label">Most Popular</div>
+        <div class="tier-name">BioSuite Signature</div>
+        <div class="tier-price">Configured to goal</div>
+        <p class="tier-desc">The complete BioSuite experience. Everything in Core, plus a standard technology package and a dedicated biohacking zone, designed with you.</p>
+        <ul class="tier-features">
+          <li>Everything in Core</li>
+          <li class="tier-group">Standard technology package</li>
+          <li class="tier-sub">Red &amp; near-infrared light therapy bed</li>
+          <li class="tier-sub">PEMF</li>
+          <li class="tier-sub">NanoVi</li>
+          <li>Dedicated biohacking zone</li>
+          <li>Rooftop deck &amp; outdoor deck</li>
+          <li>Layout &amp; technology design consultation</li>
+          <li>Quarterly protocol consultation (first year)</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">No Compromise</div>
+        <div class="tier-name">BioSuite Estate</div>
+        <div class="tier-price">Bespoke</div>
+        <p class="tier-desc">Clinic-grade integration with no limits. A fully custom layout, flagship modalities, and modular pods co-located on your property.</p>
+        <ul class="tier-features">
+          <li>Everything in Signature</li>
+          <li>15+ HPC systems, hand-selected</li>
+          <li>Flagship modalities: hyperbaric, altitude, ozone, and more</li>
+          <li>Modular tech pods co-located on site</li>
+          <li>Fully custom layout, finishes &amp; materials</li>
+          <li>Ongoing HPC retainer &amp; protocol oversight</li>
+        </ul>
+      </div>
+    </div>
+    <p class="tier-fine">Pricing varies based on technology selection, finish tier, site preparation, and delivery region. All builds begin with a no-cost discovery call. Financing available for qualified buyers.</p>
+  </div>
+</section>
+
 <section id="opportunity" class="opportunity">
   <div class="container">
     <div class="eyebrow">The Opportunity</div>
@@ -462,61 +541,6 @@
   </div>
 </section>
 
-<section id="tiers" class="tiers">
-  <div class="container">
-    <div class="eyebrow">Configurations</div>
-    <h2>Three paths.<br>One philosophy.</h2>
-    <hr class="hairline" />
-    <p>Every BioSuite starts from the same industrial-grade foundation and ends in a radically different place. Technology selection, material specification, and scope all scale with the owner's goals.</p>
-    <div class="tier-cards">
-      <div class="tier-card">
-        <div class="tier-label">Foundation</div>
-        <div class="tier-name">BioSuite Core</div>
-        <div class="tier-price">Entry configuration</div>
-        <p class="tier-desc">The essentials, done right. A beautifully built health-optimized home with the foundational systems that work for you every hour of the day.</p>
-        <ul class="tier-features">
-          <li>350+ sq ft main level + loft space</li>
-          <li>Noir or Cabin finish</li>
-          <li>Health-conscious kitchen &amp; bathroom</li>
-          <li>Circadian lighting &middot; grounded surfaces &middot; clean air</li>
-          <li>Hydrogen-rich, filtered water at every tap</li>
-          <li>Core HPC technology package (3&ndash;5 systems)</li>
-          <li>Solar + battery compatible</li>
-        </ul>
-      </div>
-      <div class="tier-card featured">
-        <div class="tier-label">Most Popular</div>
-        <div class="tier-name">BioSuite Signature</div>
-        <div class="tier-price">Configured to goal</div>
-        <p class="tier-desc">The complete BioSuite experience. A dedicated biohacking zone, contrast therapy outdoors, and eight to twelve integrated systems chosen with you.</p>
-        <ul class="tier-features">
-          <li>Everything in Core</li>
-          <li>Dedicated biohacking zone</li>
-          <li>Sauna + cold plunge contrast therapy deck</li>
-          <li>Rooftop deck &amp; outdoor deck</li>
-          <li>8&ndash;12 HPC systems (red &amp; near-infrared, PEMF, sleep, hydrogen, strength, more)</li>
-          <li>Layout and technology design consultation</li>
-          <li>Quarterly protocol consultation (first year)</li>
-        </ul>
-      </div>
-      <div class="tier-card">
-        <div class="tier-label">No Compromise</div>
-        <div class="tier-name">BioSuite Estate</div>
-        <div class="tier-price">Bespoke</div>
-        <p class="tier-desc">Clinic-grade integration with no limits. A fully custom layout, flagship modalities, and modular pods co-located on your property.</p>
-        <ul class="tier-features">
-          <li>Everything in Signature</li>
-          <li>15+ HPC systems, hand-selected</li>
-          <li>Flagship modalities: hyperbaric, altitude, full-body light</li>
-          <li>Modular tech pods co-located on site</li>
-          <li>Fully custom layout, finishes &amp; materials</li>
-          <li>Ongoing HPC retainer &amp; protocol oversight</li>
-        </ul>
-      </div>
-    </div>
-    <p class="tier-fine">Pricing varies based on technology selection, finish tier, site preparation, and delivery region. All builds begin with a no-cost discovery call. Financing available for qualified buyers.</p>
-  </div>
-</section>
 
 
 <section id="inquiry" class="inquiry">
