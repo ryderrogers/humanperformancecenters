@@ -112,14 +112,15 @@
   .tech-category { font-size:11px; letter-spacing:3px; color:var(--gold); font-weight:700; text-transform:uppercase; margin-bottom:12px; }
   .tech-name { font-size:24px; font-weight:700; color:var(--paper); margin-bottom:8px; }
   .tech-desc { font-size:15px; color:#BEBAAF; line-height:1.6; margin:0; }
-  .flagships { display:grid; grid-template-columns:repeat(3,1fr); gap:48px 40px; margin-top:40px; }
+  .flagships { display:grid; grid-template-columns:repeat(4,1fr); gap:44px 32px; margin-top:36px; }
   .flag { padding-top:24px; border-top:2px solid var(--gold); display:flex; flex-direction:column; }
   .flag img { width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:6px; display:block; margin:14px 0 16px; order:3; }
   .flag-body { display:contents; }
   .flag-cat { order:1; font-size:11px; letter-spacing:3px; color:var(--gold); font-weight:700; text-transform:uppercase; margin-bottom:8px; }
-  .flag-name { order:2; font-size:24px; font-weight:700; color:var(--paper); line-height:1.2; }
+  .flag-name { order:2; font-size:21px; font-weight:700; color:var(--paper); line-height:1.2; }
   .flag-desc { order:4; font-size:15px; color:#BEBAAF; line-height:1.6; margin:0; }
-  @media(max-width:900px) { .flagships { grid-template-columns:1fr 1fr; } }
+  @media(max-width:1100px) { .flagships { grid-template-columns:repeat(3,1fr); } }
+  @media(max-width:860px) { .flagships { grid-template-columns:1fr 1fr; } }
   @media(max-width:560px) { .flagships { grid-template-columns:1fr; } }
   .sub-eyebrow { font-size:11px; letter-spacing:4px; color:var(--gold-soft); font-weight:700; text-transform:uppercase; margin:88px 0 0; }
   .pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:40px 48px; margin-top:32px; }
@@ -375,15 +376,15 @@
     <div class="sub-eyebrow" style="margin-top:28px;">Flagship Systems</div>
     <div class="flagships">
       <div class="flag">
-        <img src="flag-red-light.jpg" alt="Full-body red and near-infrared light therapy bed" loading="lazy" />
+        <img src="flag-red-light.jpg" alt="Full-body red and near-infrared light therapy bed" loading="lazy" style="object-position:center;" />
         <div class="flag-body">
           <div class="flag-cat">Light</div>
-          <div class="flag-name">Red &amp; Near-Infrared Light Bed</div>
+          <div class="flag-name">Red &amp; Near-Infrared Bed</div>
           <p class="flag-desc">Full-body photobiomodulation for cellular energy, skin, recovery, and sleep.</p>
         </div>
       </div>
       <div class="flag">
-        <img src="flag-pemf.jpg" alt="Full-body PEMF system" loading="lazy" />
+        <img src="flag-pemf.jpg" alt="Full-body PEMF system" loading="lazy" style="object-position:center;" />
         <div class="flag-body">
           <div class="flag-cat">Cellular</div>
           <div class="flag-name">PEMF</div>
@@ -391,7 +392,7 @@
         </div>
       </div>
       <div class="flag">
-        <img src="flag-nanovi.jpg" alt="NanoVi device" loading="lazy" />
+        <img src="flag-nanovi.jpg" alt="NanoVi device" loading="lazy" style="object-position:center;" />
         <div class="flag-body">
           <div class="flag-cat">Cellular</div>
           <div class="flag-name">NanoVi</div>
@@ -399,23 +400,39 @@
         </div>
       </div>
       <div class="flag">
-        <img src="flag-altitude.jpg" alt="Hypobaric altitude training chamber" loading="lazy" />
+        <img src="flag-sauna.jpg" alt="Barrel sauna" loading="lazy" style="object-position:center 35%;" />
         <div class="flag-body">
-          <div class="flag-cat">Oxygen &amp; Altitude</div>
-          <div class="flag-name">Hypobaric Altitude</div>
-          <p class="flag-desc">Train and recover at simulated altitude, at sea level, on your own property.</p>
+          <div class="flag-cat">Heat</div>
+          <div class="flag-name">Sauna</div>
+          <p class="flag-desc">Infrared or traditional heat for circulation, recovery, and deep relaxation.</p>
         </div>
       </div>
       <div class="flag">
-        <img src="flag-sauna.jpg" alt="Barrel sauna" loading="lazy" />
+        <img src="flag-plunge.jpg" alt="Cold plunge on the deck" loading="lazy" style="object-position:center 40%;" />
         <div class="flag-body">
-          <div class="flag-cat">Contrast</div>
-          <div class="flag-name">Sauna + Cold Plunge</div>
-          <p class="flag-desc">Heat and cold on the deck, every day. The contrast therapy ritual, built in.</p>
+          <div class="flag-cat">Cold</div>
+          <div class="flag-name">Cold Plunge</div>
+          <p class="flag-desc">Daily cold immersion for resilience, recovery, and mental clarity.</p>
         </div>
       </div>
       <div class="flag">
-        <img src="flag-compression.jpg" alt="Pneumatic compression and percussion recovery" loading="lazy" />
+        <img src="flag-vapor.jpg" alt="Mineral vapor steam shower" loading="lazy" style="object-position:center 45%;" />
+        <div class="flag-body">
+          <div class="flag-cat">Breath</div>
+          <div class="flag-name">Mineral Vapor</div>
+          <p class="flag-desc">Hydrogen-based steam with 77 trace minerals, breathed in during a steam shower.</p>
+        </div>
+      </div>
+      <div class="flag">
+        <img src="flag-vibration.jpg" alt="Whole-body vibration platform" loading="lazy" style="object-position:center 35%;" />
+        <div class="flag-body">
+          <div class="flag-cat">Movement</div>
+          <div class="flag-name">Whole-Body Vibration</div>
+          <p class="flag-desc">Vibration training for circulation, lymphatic flow, strength, and bone health.</p>
+        </div>
+      </div>
+      <div class="flag">
+        <img src="flag-compression.jpg" alt="Pneumatic compression and percussion recovery" loading="lazy" style="object-position:center;" />
         <div class="flag-body">
           <div class="flag-cat">Recovery</div>
           <div class="flag-name">Compression + Percussion</div>
@@ -430,13 +447,13 @@
       <div class="pillar"><div class="pillar-name">Water &amp; Hydrogen</div><p class="pillar-desc">Structured water and hydrogen-rich water on tap, with filtration and ozonated laundry throughout the home.</p></div>
       <div class="pillar"><div class="pillar-name">Sleep</div><p class="pillar-desc">A sleep-optimized master bedroom with temperature-regulated sleep, grounding, and a dark, quiet environment.</p></div>
       <div class="pillar"><div class="pillar-name">Recovery &amp; Contrast</div><p class="pillar-desc">Percussion, compression, sauna, and cold plunge for daily recovery between training and work.</p></div>
-      <div class="pillar"><div class="pillar-name">Cellular &amp; Oxygen</div><p class="pillar-desc">PEMF, NanoVi, and optional hyperbaric and hypobaric altitude systems for the deepest level of adaptation.</p></div>
+      <div class="pillar"><div class="pillar-name">Cellular &amp; Oxygen</div><p class="pillar-desc">PEMF, NanoVi, and optional hyperbaric oxygen for the deepest level of cellular adaptation.</p></div>
       <div class="pillar"><div class="pillar-name">Air &amp; Environment</div><p class="pillar-desc">Clean air, grounded floors, low-EMF wiring, and non-toxic materials in every component of the build.</p></div>
     </div>
 
     <div class="partners">
       <div class="partners-label">Built With Our Partner Network</div>
-      <div class="partners-list"><span>Dialed Labs</span><span class="dot">&middot;</span><span>Echo</span><span class="dot">&middot;</span><span>ARRC LED</span><span class="dot">&middot;</span><span>OxeFit</span><span class="dot">&middot;</span><span>Eight Sleep</span><span class="dot">&middot;</span><span>Ra Optics</span><span class="dot">&middot;</span><span>BON CHARGE</span><span class="dot">&middot;</span><span>Earthing</span><span class="dot">&middot;</span><span>O3 Waterworks</span><span class="dot">&middot;</span><span>CopperWater</span><span class="dot">&middot;</span><span>Jaspr</span><span class="dot">&middot;</span><span>BrainTap</span></div>
+      <div class="partners-list"><span>Dialed Labs</span> <span class="dot">&middot;</span> <span>Echo</span> <span class="dot">&middot;</span> <span>ARRC LED</span> <span class="dot">&middot;</span> <span>OxeFit</span> <span class="dot">&middot;</span> <span>Eight Sleep</span> <span class="dot">&middot;</span> <span>Ra Optics</span> <span class="dot">&middot;</span> <span>BON CHARGE</span> <span class="dot">&middot;</span> <span>Earthing</span> <span class="dot">&middot;</span> <span>O3 Waterworks</span> <span class="dot">&middot;</span> <span>CopperWater</span> <span class="dot">&middot;</span> <span>Jaspr</span> <span class="dot">&middot;</span> <span>BrainTap</span></div>
     </div>
     <div class="catalog-note">The full HPC Technology Catalog &mdash; 30+ systems selectable per build &mdash; is available on request after a discovery call.</div>
   </div>
