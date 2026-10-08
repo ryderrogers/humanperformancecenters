@@ -36,6 +36,19 @@
   .nav-links { display:flex; gap:28px; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; }
   .nav-links a { color:var(--grey); }
   .nav-links a:hover { color:var(--dark); text-decoration:none; }
+  .nav-right { display:flex; align-items:center; gap:20px; }
+  .nav-phone { font-size:13px; font-weight:700; letter-spacing:1px; color:var(--dark); white-space:nowrap; }
+  .nav-phone:hover { color:var(--gold); text-decoration:none; }
+  .nav-phone-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-right:6px; font-weight:700; }
+  @media(max-width:560px) { .nav-phone-label { display:none; } .nav-cta { display:none; } .nav-phone { font-size:14px; padding:8px 14px; border:1px solid var(--gold); border-radius:999px; } .brand-name { letter-spacing:3px; } }
+  .contact-direct { margin:28px 0 8px; padding:22px 26px; border:1px solid var(--gold); border-radius:10px; background:rgba(184,151,42,0.08); }
+  .contact-direct-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:700; color:var(--gold-soft); margin-bottom:6px; }
+  .contact-direct-num { font-size:clamp(28px,3.4vw,40px); font-weight:700; color:var(--paper); letter-spacing:0.02em; line-height:1.1; }
+  .contact-direct-num:hover { color:var(--gold-light); text-decoration:none; }
+  .contact-direct-actions { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .contact-direct-actions a { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:11px 22px; border-radius:999px; border:1px solid var(--gold); color:var(--gold-soft); }
+  .contact-direct-actions a.primary { background:var(--gold); color:var(--dark); }
+  .contact-direct-actions a:hover { background:var(--gold-light); color:var(--dark); text-decoration:none; }
   .nav-cta { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:10px 20px; background:var(--dark); color:var(--paper); border-radius:999px; transition:background 0.2s; }
   .nav-cta:hover { background:var(--gold); text-decoration:none; }
   @media(max-width:900px) { .nav-links { display:none; } }
@@ -277,7 +290,10 @@
       <a href="#opportunity">Opportunity</a>
       <a href="#tiers">Tiers</a>
     </div>
-    <a class="nav-cta" href="#inquiry">Inquire</a>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+17606952876" aria-label="Call or text 760.695.2876"><span class="nav-phone-label">Call or text</span> 760.695.2876</a>
+      <a class="nav-cta" href="#inquiry">Inquire</a>
+    </div>
   </div>
 </nav>
 
@@ -493,7 +509,7 @@
       <div class="tier-card">
         <div class="tier-label">Foundation</div>
         <div class="tier-name">Biosuite Core</div>
-        <div class="tier-price">Approx. $225,000</div>
+        <div class="tier-price">Inquire for pricing</div>
         <p class="tier-desc">The essentials, done right. A home where the environment itself works for you &mdash; light, water, air, sleep, and recovery &mdash; every hour of the day.</p>
         <ul class="tier-features">
           <li>350+ sq ft main level + loft space</li>
@@ -515,7 +531,7 @@
       <div class="tier-card featured">
         <div class="tier-label">Most Popular</div>
         <div class="tier-name">Biosuite Signature</div>
-        <div class="tier-price">Approx. $360,000</div>
+        <div class="tier-price">Inquire for pricing</div>
         <p class="tier-desc">The complete Biosuite experience. Everything in Core, plus a standard technology package, sauna and cold plunge, and a dedicated biohacking zone, designed with you.</p>
         <ul class="tier-features">
           <li class="tier-group">Everything in Core</li>
@@ -587,6 +603,14 @@
     <h2>Build yours.</h2>
     <hr class="hairline" />
     <p>Every Biosuite begins with a no-cost discovery call with the founder. Whether it&#x2019;s for your home, your business, or your portfolio, tell us what you&#x2019;re building toward and we will be in touch within two business days.</p>
+    <div class="contact-direct">
+      <div class="contact-direct-label">Prefer to talk? Call or text Ryder</div>
+      <a class="contact-direct-num" href="tel:+17606952876">760.695.2876</a>
+      <div class="contact-direct-actions">
+        <a class="primary" href="tel:+17606952876">Call</a>
+        <a href="sms:+17606952876">Text</a>
+      </div>
+    </div>
     <form class="inquiry-form" onsubmit="return submitBiosuiteInquiry(event)">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" autocomplete="name" placeholder="Your full name" required />
