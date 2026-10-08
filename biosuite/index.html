@@ -71,6 +71,9 @@
   .tier-custom { margin-top:20px; padding:14px 16px; border:1px dashed var(--gold); border-radius:8px; font-size:13px; line-height:1.5; color:var(--grey); }
   section.concept { padding:80px 0; border-top:1px solid var(--rule); }
   .concept-photos img { aspect-ratio:1/1 !important; }
+  .concept-image { width:100%; aspect-ratio:21/9; object-fit:cover; object-position:center 55%; border-radius:10px; display:block; margin:4px 0 0; box-shadow:0 20px 60px -15px rgba(0,0,0,0.25); }
+  section.architecture .concept-photos { margin:8px 0 0; }
+  p.arch-copy { font-size:19px; line-height:1.6; color:var(--charcoal); max-width:1080px; margin:32px 0 0; }
   .concept-photos { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:8px; }
   @media(max-width:720px) { .concept-photos { grid-template-columns:1fr 1fr; } }
   .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:64px; padding-top:48px; border-top:2px solid var(--gold); }
@@ -193,6 +196,9 @@
   .inquiry-form button { font-family:var(--font); font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:16px 32px; background:var(--gold); color:var(--dark); border:none; border-radius:999px; cursor:pointer; transition:background 0.2s; }
   .inquiry-form button:hover { background:var(--gold-light); }
 
+  .float-cta { position:fixed; right:28px; bottom:28px; z-index:120; box-shadow:0 12px 32px -8px rgba(0,0,0,0.45); opacity:0; transform:translateY(16px); pointer-events:none; transition:opacity 0.3s, transform 0.3s, background 0.2s; }
+  .float-cta.show { opacity:1; transform:none; pointer-events:auto; }
+  @media(max-width:720px) { .float-cta { left:16px; right:16px; bottom:16px; text-align:center; } }
   footer { padding:64px 0 48px; text-align:center; color:#7A7A70; font-size:13px; background:var(--dark); border-top:1px solid #222; }
   footer .brand-line { font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; font-size:14px; }
   footer p { font-size:13px; color:#7A7A70; max-width:100%; margin:8px auto; }
@@ -253,8 +259,8 @@
     </div>
     <div class="nav-links">
       <a href="#concept">Concept</a>
-      <a href="#architecture">Architecture</a>
       <a href="#technology">Technology</a>
+      <a href="#architecture">Architecture</a>
       <a href="#tiers">Tiers</a>
       <a href="#opportunity">Opportunity</a>
     </div>
@@ -287,12 +293,7 @@
     <h2>Your home.<br>Reimagined as a health optimization center.</h2>
     <hr class="hairline" />
     <p class="lede">Biosuite integrates elite health technology into a stunning, mobile, industrially powered home and office, delivered to your property or business. The transformation begins at the cellular level — and compounds every single day you live inside it.</p>
-    <div class="concept-photos">
-      <img src="nokken-bike.jpg" alt="Biosuite exterior — vertical slat cladding" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="nokken-ladder.jpg" alt="Biosuite exterior — rooftop ladder detail" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="kitchen-dark.jpg" alt="Biosuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="nokken-bedroom.jpg" alt="Biosuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-    </div>
+    <img class="concept-image" src="concept-dusk-redlight.jpg" alt="A Biosuite at dusk, red light therapy glowing inside" loading="lazy" />
     <div class="stats">
       <div>
         <div class="stat-label">Footprint</div>
@@ -312,58 +313,6 @@
     </div>
     
 
-  </div>
-</section>
-
-<section id="architecture" class="architecture">
-  <div class="container">
-    <div class="eyebrow">The Structure</div>
-    <h2>Scandinavian soul. California energy.</h2>
-    <hr class="hairline" />
-    <p>Each Biosuite is built on an industrial-grade, relocatable structure — timeless, engineered to last, and fully customizable from the layout to the technology. Floor-to-ceiling glass, rooftop and outdoor decks, industrial quality and power. Health-conscious materials in every component of the build.</p>
-    <div class="finishes">
-      <div class="finish noir">
-        <img src="finish-noir.jpg" alt="Noir finish — smoked wood kitchen and stone bathroom" loading="lazy" />
-        <div class="finish-body">
-          <div class="finish-label">Finish 01 &middot; Dark Modern</div>
-          <div class="finish-name">Noir</div>
-          <p class="finish-desc">Smoked vertical wood, matte black, stone and bronze. Calm, low, and cave-like. Built for deep sleep.</p>
-        </div>
-      </div>
-      <div class="finish hearth">
-        <img src="finish-hearth.jpg" alt="Hearth finish — pale pine living space, bedroom, and cedar bath" loading="lazy" />
-        <div class="finish-body">
-          <div class="finish-label">Finish 02 &middot; Warm Cabin</div>
-          <div class="finish-name">Hearth</div>
-          <p class="finish-desc">Pale pine and cedar, big daylight, natural textiles. Bright, warm, and Scandinavian.</p>
-        </div>
-      </div>
-    </div>
-    <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
-    <img src="unit-at-night.jpg" alt="Biosuite at night — rooftop deck, barrel sauna, and spa" loading="lazy" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
-    <div class="permit">
-      <div class="permit-label">California Permitting</div>
-      <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
-    </div>
-    <div class="spec-grid">
-      <div class="spec-item">
-        <div class="spec-label">The Unit</div>
-        <div class="spec-content">350+ sq ft main level + loft space<br>Rooftop deck + outdoor deck available<br>Relocatable, industrial-grade build<br>Solar + battery compatible</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">The Experience</div>
-        <div class="spec-content">Circadian lighting throughout<br>Structured water at every tap<br>Grounded surfaces &middot; low-EMF wiring<br>Clean air &middot; non-toxic materials</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">Dimensions</div>
-        <div class="spec-content">40' length &middot; 8'5" width &middot; 13'6" height<br>200A+ electrical service<br>Full hookup: water, sewer, incinerator option<br>Shielded wiring &middot; EMF clean</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">Zones</div>
-        <div class="spec-content">Master bedroom<br>Health-conscious bathroom<br>Health-conscious kitchen<br>Biohacking zone &middot; HPC tech integration</div>
-      </div>
-    </div>
-    <img src="loft-sleep-system.jpg" alt="Biosuite loft — sleep system with circadian under-bed lighting" loading="lazy" style="width:100%;border-radius:10px;margin:48px 0 0;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
   </div>
 </section>
 
@@ -459,6 +408,63 @@
   </div>
 </section>
 
+<section id="architecture" class="architecture">
+  <div class="container">
+    <div class="eyebrow">The Structure</div>
+    <h2>Scandinavian soul. California energy.</h2>
+    <hr class="hairline" />
+    <div class="concept-photos">
+      <img src="nokken-bike.jpg" alt="Biosuite exterior — vertical slat cladding" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="nokken-ladder.jpg" alt="Biosuite exterior — rooftop ladder detail" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="kitchen-dark.jpg" alt="Biosuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="nokken-bedroom.jpg" alt="Biosuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+    </div>
+    <p class="arch-copy">Scandinavian design &mdash; warm wood, clean lines, calm light &mdash; meets the California way of living: indoor&ndash;outdoor flow, open glass, rooftop and outdoor decks, and solar-ready power. Every Biosuite is built on an industrial-grade, relocatable structure, engineered to last and fully customizable from the layout to the technology, with health-conscious materials in every component.</p>
+    <div class="finishes">
+      <div class="finish noir">
+        <img src="finish-noir.jpg" alt="Noir finish — smoked wood kitchen and stone bathroom" loading="lazy" />
+        <div class="finish-body">
+          <div class="finish-label">Finish 01 &middot; Dark Modern</div>
+          <div class="finish-name">Noir</div>
+          <p class="finish-desc">Smoked vertical wood, matte black, stone and bronze. Calm, low, and cave-like. Built for deep sleep.</p>
+        </div>
+      </div>
+      <div class="finish hearth">
+        <img src="finish-hearth.jpg" alt="Hearth finish — pale pine living space, bedroom, and cedar bath" loading="lazy" />
+        <div class="finish-body">
+          <div class="finish-label">Finish 02 &middot; Warm Cabin</div>
+          <div class="finish-name">Hearth</div>
+          <p class="finish-desc">Pale pine and cedar, big daylight, natural textiles. Bright, warm, and Scandinavian.</p>
+        </div>
+      </div>
+    </div>
+    <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
+    <img src="unit-at-night.jpg" alt="Biosuite at night — rooftop deck, barrel sauna, and spa" loading="lazy" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
+    <div class="permit">
+      <div class="permit-label">California Permitting</div>
+      <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-item">
+        <div class="spec-label">The Unit</div>
+        <div class="spec-content">350+ sq ft main level + loft space<br>Rooftop deck + outdoor deck available<br>Relocatable, industrial-grade build<br>Solar + battery compatible</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">The Experience</div>
+        <div class="spec-content">Circadian lighting throughout<br>Structured water at every tap<br>Grounded surfaces &middot; low-EMF wiring<br>Clean air &middot; non-toxic materials</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Dimensions</div>
+        <div class="spec-content">40' length &middot; 8'5" width &middot; 13'6" height<br>200A+ electrical service<br>Full hookup: water, sewer, incinerator option<br>Shielded wiring &middot; EMF clean</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Zones</div>
+        <div class="spec-content">Master bedroom<br>Health-conscious bathroom<br>Health-conscious kitchen<br>Biohacking zone &middot; HPC tech integration</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="tiers" class="tiers">
   <div class="container">
     <div class="eyebrow">Configurations</div>
@@ -536,7 +542,7 @@
     <div class="eyebrow">The Opportunity</div>
     <h2>Enjoy it. Or deploy it.</h2>
     <hr class="hairline" />
-    <p>Biosuite is designed to generate returns — as a premium wellness rental, a corporate recovery suite, a hospitality amenity, or a senior longevity residence. Wellness real estate is one of the fastest-growing categories in premium lodging.</p>
+    <p>Live in it every day, or deploy it as an asset &mdash; a premium wellness rental, a corporate recovery suite, a hospitality amenity, or a longevity residence. Wellness real estate is one of the fastest-growing categories in premium lodging.</p>
     <img src="deploy-campus.jpg" alt="A row of Biosuite units in a forest clearing at golden hour" style="max-height:440px;object-fit:cover;object-position:center 70%;width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
     <div class="opp-grid">
       <div class="opp-card">
@@ -640,6 +646,8 @@
   </div>
 </section>
 
+<a class="btn btn-gold float-cta" href="#inquiry" data-interest="A personal residence" aria-label="Go to the Build yours form">Build Yours</a>
+
 <footer>
   <div class="container-narrow">
     <div class="brand-line">Biosuite™</div>
@@ -650,6 +658,16 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    var cta=document.querySelector('.float-cta'), hero=document.querySelector('section.hero'), inq=document.getElementById('inquiry');
+    if(!cta||!('IntersectionObserver' in window)) return;
+    var heroVis=true, inqVis=false;
+    function upd(){ cta.classList.toggle('show', !heroVis && !inqVis); }
+    new IntersectionObserver(function(e){ heroVis=e[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function(e){ inqVis=e[0].isIntersecting; upd(); },{threshold:0.15}).observe(inq);
+  })();
+</script>
 <script>
   document.querySelectorAll('[data-interest]').forEach(function(a){
     a.addEventListener('click',function(){ var sel=document.getElementById('interest'); if(sel) sel.value=a.getAttribute('data-interest'); });
