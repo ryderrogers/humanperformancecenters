@@ -196,9 +196,15 @@
   .inquiry-form button { font-family:var(--font); font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:16px 32px; background:var(--gold); color:var(--dark); border:none; border-radius:999px; cursor:pointer; transition:background 0.2s; }
   .inquiry-form button:hover { background:var(--gold-light); }
 
-  .float-cta { position:fixed; right:28px; bottom:28px; z-index:120; box-shadow:0 12px 32px -8px rgba(0,0,0,0.45); opacity:0; transform:translateY(16px); pointer-events:none; transition:opacity 0.3s, transform 0.3s, background 0.2s; }
-  .float-cta.show { opacity:1; transform:none; pointer-events:auto; }
-  @media(max-width:720px) { .float-cta { left:16px; right:16px; bottom:16px; text-align:center; } }
+  .float-cta { position:fixed; right:28px; bottom:28px; z-index:120; font-size:14px; letter-spacing:3.5px; padding:20px 38px; background:var(--gold); color:var(--dark); border:2px solid var(--gold-light); box-shadow:0 14px 36px -8px rgba(184,151,42,0.55), 0 6px 18px -6px rgba(0,0,0,0.5); opacity:0; transform:translateY(16px); pointer-events:none; transition:opacity 0.3s, transform 0.3s, background 0.2s; }
+  .float-cta::before { content:""; position:absolute; inset:-2px; border-radius:999px; border:2px solid var(--gold-light); opacity:0; pointer-events:none; }
+  .float-cta.show { opacity:1; transform:none; pointer-events:auto; animation:ctaBreathe 2.6s ease-in-out infinite; }
+  .float-cta.show::before { animation:ctaRing 2.6s ease-out infinite; }
+  .float-cta:hover { background:var(--gold-light); animation-play-state:paused; transform:translateY(-2px); }
+  @keyframes ctaBreathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+  @keyframes ctaRing { 0% { opacity:0.75; transform:scale(1); } 100% { opacity:0; transform:scale(1.35,1.7); } }
+  @media (prefers-reduced-motion: reduce) { .float-cta.show, .float-cta.show::before { animation:none; } }
+  @media(max-width:720px) { .float-cta { left:16px; right:16px; bottom:16px; text-align:center; padding:18px 24px; } @keyframes ctaRing { 0% { opacity:0.6; transform:scale(1); } 100% { opacity:0; transform:scale(1.04,1.5); } } }
   footer { padding:64px 0 48px; text-align:center; color:#7A7A70; font-size:13px; background:var(--dark); border-top:1px solid #222; }
   footer .brand-line { font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; font-size:14px; }
   footer p { font-size:13px; color:#7A7A70; max-width:100%; margin:8px auto; }
@@ -674,8 +680,11 @@
   });
 </script>
 <script>
+  var FORMSPREE_URL = "https://formspree.io/f/xyklyadv"; // same form as the NDA gate
   function submitBiosuiteInquiry(e) {
     e.preventDefault();
+    var form     = document.querySelector('.inquiry-form');
+    var btn      = form.querySelector('button[type="submit"]');
     var name     = document.getElementById('name').value.trim();
     var email    = document.getElementById('email').value.trim();
     var phone    = document.getElementById('phone').value.trim();
@@ -683,12 +692,28 @@
     var budget   = document.getElementById('budget').value;
     var message  = document.getElementById('message').value.trim();
     var subject  = 'Biosuite Inquiry — ' + name;
-    var body     = 'Biosuite inquiry via hpcla.com/biosuite\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone||'Not provided') + '\nInterest: ' + interest + '\nBudget: ' + (budget||'Not provided') + '\n\n---\n' + (message||'(No message)');
-    window.location.href = 'mailto:ryder@hpcla.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    setTimeout(function() {
-      document.querySelector('.inquiry-form').style.display = 'none';
-      document.getElementById('inquirySuccess').style.display = 'block';
-    }, 600);
+    var body     = 'Biosuite inquiry via hpcla.com/biosuite\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone||'Not provided') + '\nInterest: ' + interest + '\nConfiguration: ' + (budget||'Not provided') + '\n\n---\n' + (message||'(No message)');
+    var done = function(ok) {
+      form.style.display = 'none';
+      var box = document.getElementById('inquirySuccess');
+      box.innerHTML = ok
+        ? 'Thank you, ' + name.split(' ')[0] + '. Your inquiry is in. We will be in touch within two business days.'
+        : 'Your mail client should have opened. If not, write directly to <a href="mailto:ryder@hpcla.com" style="color:var(--gold-soft);">ryder@hpcla.com</a>.';
+      box.style.display = 'block';
+    };
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ _subject: subject, _replyto: email, form_type: 'Biosuite inquiry', name: name, email: email, phone: phone || 'Not provided', interest: interest, configuration: budget || 'Not provided', message: message || '(No message)', page: window.location.href })
+    }).then(function(r){
+      if (r.ok) { done(true); return; }
+      throw new Error('formspree ' + r.status);
+    }).catch(function(){
+      // Fallback: open the visitor's mail client so the lead is never lost
+      window.location.href = 'mailto:ryder@hpcla.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      setTimeout(function(){ done(false); }, 600);
+    });
     return false;
   }
 </script>
