@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BioSuite — Private Preview</title>
+<title>Biosuite — Private Preview</title>
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='%23B8972A'/%3E%3Crect x='34' y='34' width='32' height='32' rx='4' fill='%23FCFBF7'/%3E%3C/svg%3E" />
 <style>
@@ -23,8 +23,8 @@
   h1 { font-size:clamp(48px,8vw,104px); }
   h2 { font-size:clamp(36px,5vw,64px); margin-bottom:24px; }
   h3 { font-size:clamp(22px,2.6vw,30px); margin-bottom:12px; }
-  p { margin-bottom:16px; max-width:680px; }
-  p.lede { font-size:22px; font-style:italic; color:var(--charcoal); max-width:720px; line-height:1.5; margin-bottom:48px; }
+  p { margin-bottom:16px; max-width:920px; }
+  p.lede { font-size:22px; font-style:italic; color:var(--charcoal); max-width:1080px; line-height:1.5; margin-bottom:48px; }
   a { color:var(--gold); text-decoration:none; }
   .hairline { height:1px; background:var(--gold); width:48px; border:none; margin:24px 0; }
 
@@ -40,12 +40,13 @@
   .nav-cta:hover { background:var(--gold); text-decoration:none; }
   @media(max-width:900px) { .nav-links { display:none; } }
 
-  section.hero { padding:96px 0 64px; }
+  section.hero { padding:72px 0 64px; }
   .hero h1 { margin-bottom:32px; font-size:clamp(40px,6vw,92px); }
-  .hero-sub { font-size:clamp(20px,2.3vw,26px); font-style:italic; color:var(--charcoal); max-width:640px; line-height:1.4; margin-bottom:48px; }
-  .hero-meta { display:flex; gap:40px; flex-wrap:wrap; font-size:12px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; font-weight:600; padding-top:32px; border-top:1px solid var(--rule); max-width:640px; }
+  .hero-sub { font-size:clamp(20px,2.3vw,26px); font-style:italic; color:var(--charcoal); max-width:1100px; line-height:1.4; margin-bottom:36px; }
+  .hero-meta { display:flex; gap:16px 40px; flex-wrap:wrap; justify-content:space-between; font-size:12px; color:var(--grey); letter-spacing:2px; text-transform:uppercase; font-weight:600; padding-top:28px; margin-top:36px; border-top:1px solid var(--rule); }
+  @media(max-width:900px) { .hero-meta { justify-content:flex-start; } }
   .hero-meta span::before { content:""; display:inline-block; width:6px; height:6px; background:var(--gold); border-radius:50%; margin-right:10px; vertical-align:middle; }
-  .hero-image { width:100%; height:auto; display:block; border-radius:10px; margin-top:64px; box-shadow:0 30px 80px -20px rgba(0,0,0,0.28),0 10px 30px -10px rgba(0,0,0,0.15); }
+  .hero-image { width:100%; height:auto; display:block; border-radius:10px; margin-top:8px; box-shadow:0 30px 80px -20px rgba(0,0,0,0.28),0 10px 30px -10px rgba(0,0,0,0.15); }
 
   .cta-row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
   .btn { display:inline-block; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:16px 30px; border-radius:999px; transition:background 0.2s,color 0.2s,border-color 0.2s; text-decoration:none; }
@@ -57,7 +58,7 @@
   .btn-line:hover { background:var(--dark); color:var(--paper); text-decoration:none; }
   .btn-line-light { border:1px solid #6b6b66; color:var(--paper); }
   .btn-line-light:hover { border-color:var(--gold); color:var(--gold-soft); text-decoration:none; }
-  .hero .cta-row { margin-bottom:48px; }
+  .hero .cta-row { margin-bottom:40px; }
   .section-cta { margin-top:48px; }
   section.process { padding:96px 0; border-top:1px solid var(--rule); }
   .steps { display:grid; grid-template-columns:repeat(5,1fr); gap:24px; margin-top:48px; counter-reset:step; }
@@ -94,7 +95,7 @@
   .finish-desc { font-size:15px; line-height:1.6; margin:0; color:var(--grey); }
   .finish.noir .finish-desc { color:#BEBAAF; }
   .finish-note { margin:14px 0 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--grey); }
-  .permit { margin-top:40px; padding:24px 28px; border-left:3px solid var(--gold); background:rgba(184,151,42,0.07); border-radius:4px; }
+  .permit { margin-top:-16px; margin-bottom:8px; padding:24px 28px; border-left:3px solid var(--gold); background:rgba(184,151,42,0.07); border-radius:4px; }
   .permit-label { font-size:11px; letter-spacing:3px; font-weight:700; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
   .permit p { margin:0; font-size:16px; color:var(--dark); font-weight:500; }
   @media(max-width:720px) { .finishes { grid-template-columns:1fr; } .finish-body { padding:28px 24px 32px; } }
@@ -182,7 +183,7 @@
     <rect x="30" y="30" width="40" height="40" rx="6" fill="#080808"/>
     <rect x="44" y="44" width="12" height="12" rx="2" fill="#B8972A"/>
   </svg>
-  <div class="gate-eyebrow">BioSuite · Private Preview</div>
+  <div class="gate-eyebrow">Biosuite · Private Preview</div>
   <h1 class="gate-title">Access required.</h1>
   <p class="gate-sub">This page is shared privately and requires a confidentiality agreement before viewing.</p>
   <a class="gate-btn" href="/nda/?from=/biosuite/">Review &amp; Sign Agreement</a>
@@ -210,7 +211,7 @@
         <rect x="30" y="30" width="40" height="40" rx="6" fill="#F0EDE6"/>
         <rect x="44" y="44" width="12" height="12" rx="2" fill="#B8972A"/>
       </svg>
-      <span class="brand-name">BioSuite</span>
+      <span class="brand-name">Biosuite</span>
     </div>
     <div class="nav-links">
       <a href="#concept">Concept</a>
@@ -225,28 +226,29 @@
 
 <section class="hero">
   <div class="container">
-    <div class="eyebrow">BioSuite™ · by Human Performance Centers</div>
+    <div class="eyebrow">Biosuite™ · by Human Performance Centers</div>
     <h1>The world&apos;s most advanced<br>wellness home.</h1>
     <p class="hero-sub">A mobile, industrial-quality health optimization center, delivered to your home or business. Designed in Los Angeles. Built in the USA. Fully customizable, from the layout to the technology.</p>
     <div class="cta-row">
-      <a class="btn btn-dark" href="#inquiry" data-interest="A personal residence">Design Your BioSuite</a>
+      <a class="btn btn-dark" href="#inquiry" data-interest="A personal residence">Design Your Biosuite</a>
       <a class="btn btn-line" href="#opportunity">Explore the Investment</a>
     </div>
+    <img class="hero-image" src="biosuite-hero.jpg" alt="Biosuite — cinematic exterior at dusk" />
     <div class="hero-meta">
       <span>350+ sq ft</span>
       <span>Permittable as an ADU</span>
       <span>Solar + Battery Compatible</span>
+      <span>Expandable into Larger Modular Structures</span>
     </div>
-    <img class="hero-image" src="biosuite-hero.jpg" alt="BioSuite — cinematic exterior at dusk" />
   </div>
 </section>
 
 <section id="concept" class="concept">
   <div class="container">
     <div class="eyebrow">The Concept</div>
-    <h2>Your home.<br>Reimagined as a health<br>optimization center.</h2>
+    <h2>Your home.<br>Reimagined as a health optimization center.</h2>
     <hr class="hairline" />
-    <p class="lede">BioSuite integrates elite health technology into a stunning, mobile, industrially powered home and office, delivered to your property or business. The transformation begins at the cellular level — and compounds every single day you live inside it.</p>
+    <p class="lede">Biosuite integrates elite health technology into a stunning, mobile, industrially powered home and office, delivered to your property or business. The transformation begins at the cellular level — and compounds every single day you live inside it.</p>
     <div class="stats">
       <div>
         <div class="stat-label">Footprint</div>
@@ -266,10 +268,10 @@
     </div>
     
     <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-      <img src="nokken-bike.jpg" alt="BioSuite exterior — vertical slat cladding" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="nokken-ladder.jpg" alt="BioSuite exterior — rooftop ladder detail" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="kitchen-dark.jpg" alt="BioSuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
-      <img src="nokken-bedroom.jpg" alt="BioSuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="nokken-bike.jpg" alt="Biosuite exterior — vertical slat cladding" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="nokken-ladder.jpg" alt="Biosuite exterior — rooftop ladder detail" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="kitchen-dark.jpg" alt="Biosuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
+      <img src="nokken-bedroom.jpg" alt="Biosuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
     </div>
 
   </div>
@@ -280,7 +282,7 @@
     <div class="eyebrow">The Structure</div>
     <h2>Scandinavian soul.<br>California energy.</h2>
     <hr class="hairline" />
-    <p>Each BioSuite is built on an industrial-grade, relocatable structure — timeless, engineered to last, and fully customizable from the layout to the technology. Floor-to-ceiling glass, rooftop and outdoor decks, industrial quality and power. Health-conscious materials in every component of the build.</p>
+    <p>Each Biosuite is built on an industrial-grade, relocatable structure — timeless, engineered to last, and fully customizable from the layout to the technology. Floor-to-ceiling glass, rooftop and outdoor decks, industrial quality and power. Health-conscious materials in every component of the build.</p>
     <div class="finishes">
       <div class="finish noir">
         <img src="finish-noir.jpg" alt="Noir finish — smoked wood kitchen and stone bathroom" loading="lazy" />
@@ -300,11 +302,11 @@
       </div>
     </div>
     <p class="finish-note">Both finishes, same price &middot; Reference imagery shown &middot; Layout fully customizable</p>
+    <img src="unit-at-night.jpg" alt="Biosuite at night — rooftop deck, barrel sauna, and spa" loading="lazy" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
     <div class="permit">
       <div class="permit-label">California Permitting</div>
       <p>Permittable as an ADU or single-family home in San Diego County, and as an ADU in Los Angeles County.</p>
     </div>
-    <img src="unit-at-night.jpg" alt="BioSuite at night — rooftop deck, barrel sauna, and spa" loading="lazy" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
     <div class="spec-grid">
       <div class="spec-item">
         <div class="spec-label">The Unit</div>
@@ -323,7 +325,7 @@
         <div class="spec-content">Master bedroom<br>Health-conscious bathroom<br>Health-conscious kitchen<br>Biohacking zone &middot; HPC tech integration</div>
       </div>
     </div>
-    <img src="loft-sleep-system.jpg" alt="BioSuite loft — sleep system with circadian under-bed lighting" loading="lazy" style="width:100%;border-radius:10px;margin:48px 0 0;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
+    <img src="loft-sleep-system.jpg" alt="Biosuite loft — sleep system with circadian under-bed lighting" loading="lazy" style="width:100%;border-radius:10px;margin:48px 0 0;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
   </div>
 </section>
 
@@ -332,8 +334,8 @@
     <div class="eyebrow">The Technology</div>
     <h2>The world's most powerful<br>wellness stack.<br>Integrated into your home.</h2>
     <hr class="hairline" />
-    <p>BioSuite is configured from the Human Performance Centers Technology Catalog and our partner network — a curated collection of elite-grade wellness systems from the brands we work with directly. Each build is customized to the owner's goals and budget.</p>
-    <div class="pull">Every system chosen for measurable, life-changing outcomes. Configurations are bespoke. No two BioSuite builds are identical.</div>
+    <p>Biosuite is configured from the Human Performance Centers Technology Catalog and our partner network — a curated collection of elite-grade wellness systems from the brands we work with directly. Each build is customized to the owner's goals and budget.</p>
+    <div class="pull">Every system chosen for measurable, life-changing outcomes. Configurations are bespoke. No two Biosuite builds are identical.</div>
     <div class="tech-grid">
       
       <div class="tech-card">
@@ -479,11 +481,11 @@
     <div class="eyebrow">Configurations</div>
     <h2>Three paths.<br>One philosophy.</h2>
     <hr class="hairline" />
-    <p>Every BioSuite starts from the same industrial-grade foundation and ends in a radically different place. Technology selection, material specification, and scope all scale with the owner's goals.</p>
+    <p>Every Biosuite starts from the same industrial-grade foundation and ends in a radically different place. Technology selection, material specification, and scope all scale with the owner's goals.</p>
     <div class="tier-cards">
       <div class="tier-card">
         <div class="tier-label">Foundation</div>
-        <div class="tier-name">BioSuite Core</div>
+        <div class="tier-name">Biosuite Core</div>
         <div class="tier-price">Entry configuration</div>
         <p class="tier-desc">The essentials, done right. A home where the environment itself works for you &mdash; light, water, air, sleep, and recovery &mdash; every hour of the day.</p>
         <ul class="tier-features">
@@ -505,9 +507,9 @@
       </div>
       <div class="tier-card featured">
         <div class="tier-label">Most Popular</div>
-        <div class="tier-name">BioSuite Signature</div>
+        <div class="tier-name">Biosuite Signature</div>
         <div class="tier-price">Configured to goal</div>
-        <p class="tier-desc">The complete BioSuite experience. Everything in Core, plus a standard technology package, sauna and cold plunge, and a dedicated biohacking zone, designed with you.</p>
+        <p class="tier-desc">The complete Biosuite experience. Everything in Core, plus a standard technology package, sauna and cold plunge, and a dedicated biohacking zone, designed with you.</p>
         <ul class="tier-features">
           <li class="tier-group">Everything in Core</li>
           <li class="tier-group">Standard technology package</li>
@@ -524,7 +526,7 @@
       </div>
       <div class="tier-card">
         <div class="tier-label">No Compromise</div>
-        <div class="tier-name">BioSuite Estate</div>
+        <div class="tier-name">Biosuite Estate</div>
         <div class="tier-price">Bespoke</div>
         <p class="tier-desc">Clinic-grade integration with no limits. A fully custom layout, flagship modalities, and modular pods co-located on your property.</p>
         <ul class="tier-features">
@@ -551,7 +553,7 @@
     <div class="eyebrow">The Opportunity</div>
     <h2>Live in it.<br>Or earn from it.</h2>
     <hr class="hairline" />
-    <p>BioSuite is designed to generate returns — as a premium wellness rental, a corporate recovery suite, a hospitality amenity, or a senior longevity residence. Wellness real estate is one of the fastest-growing categories in premium lodging.</p>
+    <p>Biosuite is designed to generate returns — as a premium wellness rental, a corporate recovery suite, a hospitality amenity, or a senior longevity residence. Wellness real estate is one of the fastest-growing categories in premium lodging.</p>
     <img src="place-to-rest.jpg" alt="Wellness cabins in nature at dawn" style="width:100%;border-radius:10px;margin:40px 0 48px;display:block;height:auto;box-shadow:0 20px 60px -10px rgba(0,0,0,0.18);" />
     <div class="opp-grid">
       <div class="opp-card">
@@ -600,15 +602,15 @@
     <div class="eyebrow">Get In Touch</div>
     <h2>Build yours.</h2>
     <hr class="hairline" />
-    <p>Every BioSuite begins with a no-cost discovery call. Whether it&#x2019;s for your home, your business, or your portfolio, tell us what you&#x2019;re building toward and we will be in touch within two business days.</p>
-    <form class="inquiry-form" onsubmit="return submitBioSuiteInquiry(event)">
+    <p>Every Biosuite begins with a no-cost discovery call. Whether it&#x2019;s for your home, your business, or your portfolio, tell us what you&#x2019;re building toward and we will be in touch within two business days.</p>
+    <form class="inquiry-form" onsubmit="return submitBiosuiteInquiry(event)">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Your full name" required />
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="you@email.com" required />
       <label for="phone">Phone (optional)</label>
       <input type="tel" id="phone" name="phone" placeholder="For priority callback" />
-      <label for="interest">I am interested in BioSuite as</label>
+      <label for="interest">I am interested in Biosuite as</label>
       <select id="interest" name="interest" required>
         <option value="">Select one...</option>
         <option>A personal residence</option>
@@ -631,13 +633,13 @@
     <div id="inquirySuccess" style="display:none;margin-top:32px;padding:24px 28px;background:rgba(184,151,42,0.1);border-left:3px solid var(--gold);border-radius:4px;color:var(--paper);font-size:15px;line-height:1.6;">
       Your mail client should have opened. If not, write directly to <a href="mailto:ryder@hpcla.com" style="color:var(--gold-soft);">ryder@hpcla.com</a>.
     </div>
-    <p style="margin-top:32px;font-size:13px;color:#7A7A70;">Or write directly: <a href="mailto:ryder@hpcla.com?subject=BioSuite%20Inquiry">ryder@hpcla.com</a> &middot; 760.695.2876</p>
+    <p style="margin-top:32px;font-size:13px;color:#7A7A70;">Or write directly: <a href="mailto:ryder@hpcla.com?subject=Biosuite%20Inquiry">ryder@hpcla.com</a> &middot; 760.695.2876</p>
   </div>
 </section>
 
 <footer>
   <div class="container-narrow">
-    <div class="brand-line">BioSuite™</div>
+    <div class="brand-line">Biosuite™</div>
     <p>by Human Performance Centers LLC</p>
     <p style="margin-top:16px;">Performance &middot; Recovery &middot; Longevity</p>
     <p style="margin-top:24px;"><a href="mailto:ryder@hpcla.com">ryder@hpcla.com</a> &middot; 760.695.2876 &middot; Los Angeles, California</p>
@@ -651,7 +653,7 @@
   });
 </script>
 <script>
-  function submitBioSuiteInquiry(e) {
+  function submitBiosuiteInquiry(e) {
     e.preventDefault();
     var name     = document.getElementById('name').value.trim();
     var email    = document.getElementById('email').value.trim();
@@ -659,8 +661,8 @@
     var interest = document.getElementById('interest').value;
     var budget   = document.getElementById('budget').value;
     var message  = document.getElementById('message').value.trim();
-    var subject  = 'BioSuite Inquiry — ' + name;
-    var body     = 'BioSuite inquiry via hpcla.com/biosuite\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone||'Not provided') + '\nInterest: ' + interest + '\nBudget: ' + (budget||'Not provided') + '\n\n---\n' + (message||'(No message)');
+    var subject  = 'Biosuite Inquiry — ' + name;
+    var body     = 'Biosuite inquiry via hpcla.com/biosuite\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone||'Not provided') + '\nInterest: ' + interest + '\nBudget: ' + (budget||'Not provided') + '\n\n---\n' + (message||'(No message)');
     window.location.href = 'mailto:ryder@hpcla.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     setTimeout(function() {
       document.querySelector('.inquiry-form').style.display = 'none';
