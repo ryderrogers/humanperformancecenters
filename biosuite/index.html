@@ -275,6 +275,11 @@
         if (!agreed) { localStorage.removeItem("hpc_nda_agreed_v1"); localStorage.removeItem("hpc_nda_signed_at"); }
       }
     } catch(e) {}
+    // VIP link (/biosuite/vip-<code>/) also unlocks this page for 90 days
+    try {
+      var v = +localStorage.getItem("hpc_vip_at");
+      if (v && Date.now() - v < 90 * 864e5) agreed = true;
+    } catch(e) {}
     if (agreed || preview) {
       document.getElementById("gate").classList.add("hidden");
       document.body.classList.remove("locked");
