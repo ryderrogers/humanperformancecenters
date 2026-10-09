@@ -266,7 +266,15 @@
   (function() {
     var preview = window.location.search.indexOf("preview=1") !== -1;
     var agreed  = false;
-    try { agreed = localStorage.getItem(SESSION_KEY) === "1"; } catch(e) {}
+    // Signers are remembered on this device for 90 days (keys shared with /nda/ and /catalog/)
+    try {
+      if (localStorage.getItem("hpc_nda_agreed_v1") === "1") {
+        var t = +localStorage.getItem("hpc_nda_signed_at");
+        if (!t) { localStorage.setItem("hpc_nda_signed_at", String(Date.now())); t = Date.now(); }
+        agreed = Date.now() - t < 90 * 864e5;
+        if (!agreed) { localStorage.removeItem("hpc_nda_agreed_v1"); localStorage.removeItem("hpc_nda_signed_at"); }
+      }
+    } catch(e) {}
     if (agreed || preview) {
       document.getElementById("gate").classList.add("hidden");
       document.body.classList.remove("locked");
@@ -286,9 +294,9 @@
     </div>
     <div class="nav-links">
       <a href="#technology">Technology</a>
-      <a href="#architecture">Architecture</a>
+      <a href="#architecture">Structure</a>
       <a href="#opportunity">Opportunity</a>
-      <a href="#tiers">Tiers</a>
+      <a href="#tiers">Configurations</a>
     </div>
     <div class="nav-right">
       <a class="nav-phone" href="tel:+17606952876" aria-label="Call or text 760.695.2876"><span class="nav-phone-label">Call or text</span> 760.695.2876</a>
@@ -301,7 +309,7 @@
   <div class="container">
     <div class="eyebrow">Biosuite™ · by Human Performance Centers</div>
     <h1>The world&apos;s most advanced wellness home.</h1>
-    <p class="hero-sub">Your home, reimagined as a health optimization center. A mobile, industrial-quality wellness residence delivered to your home or business &mdash; designed in Los Angeles, built in the USA, and fully customizable from the layout to the technology.</p>
+    <p class="hero-sub">Your home, reimagined as a health optimization center. A mobile, industrial-quality wellness residence delivered to your home or business &mdash; designed in Los Angeles, built in the USA, and fully customizable from the layout to the technology. Delivering nationwide, with a current focus on Los Angeles and San Diego.</p>
     <div class="cta-row">
       <a class="btn btn-dark" href="#inquiry" data-interest="A personal residence">Design Your Biosuite</a>
       <a class="btn btn-line" href="#opportunity">Explore the Investment</a>
@@ -311,11 +319,11 @@
       <div>
         <div class="stat-label">Footprint</div>
         <div class="stat-value">350<span style="font-size:0.5em;color:var(--grey);">+ sq ft</span></div>
-        <div class="stat-desc">Main level, plus loft space, attached deck, and rooftop deck</div>
+        <div class="stat-desc">Main level, plus loft space, attached deck, and optional rooftop deck</div>
       </div>
       <div>
         <div class="stat-label">Integrations</div>
-        <div class="stat-value">20<span style="font-size:0.5em;color:var(--grey);">+</span></div>
+        <div class="stat-value">30<span style="font-size:0.5em;color:var(--grey);">+</span></div>
         <div class="stat-desc">Possible wellness technology integrations</div>
       </div>
       <div>
@@ -440,7 +448,7 @@
       <img src="kitchen-dark.jpg" alt="Biosuite interior — kitchen" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
       <img src="nokken-bedroom.jpg" alt="Biosuite interior — bedroom" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;box-shadow:0 20px 60px -15px rgba(0,0,0,0.22);" />
     </div>
-    <p class="arch-copy">Scandinavian design &mdash; warm wood, clean lines, calm light &mdash; meets the California way of living: indoor&ndash;outdoor flow, open glass, rooftop and outdoor decks, and solar-ready power. Every Biosuite is built on an industrial-grade, relocatable structure, engineered to last and fully customizable from the layout to the technology, with health-conscious materials in every component.</p>
+    <p class="arch-copy">Scandinavian design &mdash; warm wood, clean lines, calm light &mdash; meets the California way of living: indoor&ndash;outdoor flow, open glass, outdoor decks with an optional rooftop deck, and solar-ready power. Every Biosuite is built on an industrial-grade, relocatable structure, engineered to last and fully customizable from the layout to the technology, with health-conscious materials in every component.</p>
     <div class="finishes-head">
       <div class="sub-eyebrow-dark">The Finishes</div>
       <h3 class="finishes-title">Two signature styles. Every detail, yours to define.</h3>
@@ -524,7 +532,7 @@
           <li>Low-EMF wiring</li>
           <li>Ozonated laundry</li>
           <li>Therabody recovery suite</li>
-          <li>Rooftop deck available</li>
+          <li>Optional rooftop deck</li>
           <li>Solar + battery compatible</li>
         </ul>
       </div>
@@ -594,7 +602,6 @@
         <div><div class="fs-value">&minus;10 yrs</div><div class="fs-desc">Biological vs. chronological age</div></div>
         <div><div class="fs-value">120&ndash;260</div><div class="fs-desc">HRV range, top 0.01% globally</div></div>
         <div><div class="fs-value">8.1&deg;</div><div class="fs-desc">Cellular phase angle</div></div>
-        <div><div class="fs-value">1,158</div><div class="fs-desc">Testosterone ng/dL, naturally</div></div>
       </div>
       <p class="founder-proof">Every protocol was tested on one body before it was built into a home.</p>
     </div>
@@ -655,6 +662,7 @@
     <p>by Human Performance Centers LLC</p>
     <p style="margin-top:16px;">Performance &middot; Recovery &middot; Longevity</p>
     <p style="margin-top:24px;"><a href="mailto:ryder@hpcla.com">ryder@hpcla.com</a> &middot; 760.695.2876 &middot; Los Angeles, California</p>
+    <p style="margin-top:24px;font-size:11px;">For general wellness only. Not medical advice, and not intended to diagnose, treat, cure, or prevent any disease.</p>
     <div class="meta">© 2026 Human Performance Centers LLC &middot; All Rights Reserved</div>
   </div>
 </footer>
@@ -692,19 +700,32 @@
       form.style.display = 'none';
       var box = document.getElementById('inquirySuccess');
       box.innerHTML = ok
-        ? 'Thank you, ' + name.split(' ')[0] + '. Your inquiry is in. We will be in touch within two business days.'
+        ? 'Thank you. I\u2019ll reply within two business days. \u2014 Ryder'
         : 'Your mail client should have opened. If not, write directly to <a href="mailto:ryder@hpcla.com" style="color:var(--gold-soft);">ryder@hpcla.com</a>.';
       box.style.display = 'block';
     };
     btn.disabled = true; btn.textContent = 'Sending…';
-    fetch(FORMSPREE_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ _subject: subject, _replyto: email, form_type: 'Biosuite inquiry', name: name, email: email, phone: phone || 'Not provided', interest: interest, configuration: budget || 'Not provided', message: message || '(No message)', page: window.location.href })
-    }).then(function(r){
-      if (r.ok) { done(true); return; }
-      throw new Error('formspree ' + r.status);
-    }).catch(function(){
+    var payload = JSON.stringify({ _subject: subject, _replyto: email, form_type: 'Biosuite inquiry', name: name, email: email, phone: phone || 'Not provided', interest: interest, configuration: budget || 'Not provided', message: message || '(No message)', page: window.location.href });
+    // Try Formspree twice (10s timeout each) before falling back to the visitor's mail client
+    var send = function(attempt) {
+      var ctl = ('AbortController' in window) ? new AbortController() : null;
+      var timer = ctl ? setTimeout(function(){ ctl.abort(); }, 10000) : null;
+      return fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: payload,
+        signal: ctl ? ctl.signal : undefined
+      }).then(function(r){
+        clearTimeout(timer);
+        if (r.ok) return;
+        throw new Error('formspree ' + r.status);
+      }).catch(function(err){
+        clearTimeout(timer);
+        if (attempt < 2) return new Promise(function(res){ setTimeout(res, 1500); }).then(function(){ return send(attempt + 1); });
+        throw err;
+      });
+    };
+    send(1).then(function(){ done(true); }).catch(function(){
       // Fallback: open the visitor's mail client so the lead is never lost
       window.location.href = 'mailto:ryder@hpcla.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       setTimeout(function(){ done(false); }, 600);

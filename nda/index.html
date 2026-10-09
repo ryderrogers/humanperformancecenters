@@ -98,6 +98,53 @@
       margin-bottom: 0;
     }
 
+    .summary {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ccc;
+    }
+
+    .summary ul {
+      list-style: none;
+      margin-top: 14px;
+    }
+
+    .summary li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .summary li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #555;
+    }
+
+    details.full-terms {
+      margin-top: 24px;
+      border-top: 1px solid #1e1e1e;
+      padding-top: 20px;
+    }
+
+    details.full-terms summary {
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #777;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    details.full-terms summary::-webkit-details-marker { display: none; }
+    details.full-terms summary::before { content: "+ "; color: #555; }
+    details.full-terms[open] summary::before { content: "− "; }
+    details.full-terms[open] summary { margin-bottom: 18px; }
+
     .highlight {
       color: #ccc;
       font-weight: 500;
@@ -159,6 +206,9 @@
     }
 
     .checkbox-label {
+      text-transform: none;
+      letter-spacing: normal;
+      margin-bottom: 0;
       font-size: 13px;
       color: #888;
       line-height: 1.6;
@@ -294,7 +344,17 @@
   <p class="subtitle">Required before viewing private content.</p>
 
   <div class="card">
-    <div class="section-label">Terms of Access</div>
+    <div class="section-label">In Plain English</div>
+    <div class="summary">
+      What you're about to see is private. By signing, you agree to:
+      <ul>
+        <li>Keep it to yourself. Don't share it without our written OK.</li>
+        <li>Not copy it or use it to build a competing product.</li>
+        <li>Not build anything substantially similar for two years.</li>
+      </ul>
+    </div>
+    <details class="full-terms">
+      <summary>Read the full agreement</summary>
     <div class="agreement-text">
       <p>
         This page contains <span class="highlight">proprietary and confidential information</span> belonging to Human Performance Centers, LLC ("HPC"), a Wyoming limited liability company. Access is granted for evaluation purposes only.
@@ -315,6 +375,7 @@
         <span class="highlight">Governing Law.</span> This agreement is governed by the laws of the State of Wyoming.
       </p>
     </div>
+    </details>
   </div>
 
   <div class="card">
@@ -330,17 +391,12 @@
       <input type="email" id="email" placeholder="your@email.com" autocomplete="email" />
     </div>
 
-    <div class="form-group">
-      <label for="company">Company / Organization <span style="color:#555;text-transform:none;font-weight:400;">(optional)</span></label>
-      <input type="text" id="company" placeholder="Company name" autocomplete="organization" />
-    </div>
-
     <div class="divider"></div>
 
     <div class="checkbox-row">
       <input type="checkbox" id="agree" />
       <label for="agree" class="checkbox-label">
-        I have read and agree to the confidentiality terms above. I understand that this content is proprietary to Human Performance Centers, LLC and that accessing it binds me to the restrictions stated.
+        I agree to the confidentiality terms above.
       </label>
     </div>
 
@@ -359,14 +415,24 @@
 <script>
   // ─── CONFIGURE ───────────────────────────────────────────────────────
   const FORMSPREE_URL    = "https://formspree.io/f/xyklyadv";
-    const BIOSUITE_URL    = (new URLSearchParams(window.location.search)).get('from') || "/biosuite/";  // returns visitor to their origin page
-  const SESSION_KEY      = "hpc_nda_agreed_v1";  // must match biosuite.html
+  const FROM_PARAM       = (new URLSearchParams(window.location.search)).get('from') || "";
+  const BIOSUITE_URL     = /^\/(?![\/\\])/.test(FROM_PARAM) ? FROM_PARAM : "/biosuite/";  // returns visitor to their origin page (same-site paths only)
+  const SESSION_KEY      = "hpc_nda_agreed_v1";  // must match /biosuite/ and /catalog/
+  const SIGNED_AT_KEY    = "hpc_nda_signed_at";  // timestamp; signers are remembered for 90 days
+  const REMEMBER_MS      = 90 * 24 * 60 * 60 * 1000;
   // ─────────────────────────────────────────────────────────────────────
 
-  // If they already agreed this session, skip straight to BioSuite
+  // If they signed on this device within the last 90 days, skip straight through
   try {
     if (localStorage.getItem(SESSION_KEY) === "1") {
-      window.location.replace(BIOSUITE_URL);
+      let t = +localStorage.getItem(SIGNED_AT_KEY);
+      if (!t) { t = Date.now(); localStorage.setItem(SIGNED_AT_KEY, String(t)); }
+      if (Date.now() - t < REMEMBER_MS) {
+        window.location.replace(BIOSUITE_URL);
+      } else {
+        localStorage.removeItem(SESSION_KEY);
+        localStorage.removeItem(SIGNED_AT_KEY);
+      }
     }
   } catch(e) {}
 
@@ -379,11 +445,10 @@
   function handleSubmit() {
     const name    = document.getElementById('fullname').value.trim();
     const email   = document.getElementById('email').value.trim();
-    const company = document.getElementById('company').value.trim();
     const agreed  = document.getElementById('agree').checked;
     const errMsg  = document.getElementById('error-msg');
 
-    if (!name || !email || !agreed) {
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !agreed) {
       errMsg.style.display = 'block';
       return;
     }
@@ -396,20 +461,28 @@
 
     const timestamp = new Date().toISOString();
     const payload = {
-      name, email, company,
+      _subject: 'NDA signed — ' + name,
+      _replyto: email,
+      form_type: 'NDA signature',
+      name, email,
       agreed: true,
       timestamp,
       page: window.location.href,
       userAgent: navigator.userAgent
     };
 
-    // Set session flag immediately — redirect regardless of fetch result
-    // so a network blip never blocks the user after they've agreed.
-    try { localStorage.setItem(SESSION_KEY, "1"); } catch(e) {}
+    // Remember this signer on this device for 90 days
+    try {
+      localStorage.setItem(SESSION_KEY, "1");
+      localStorage.setItem(SIGNED_AT_KEY, String(Date.now()));
+    } catch(e) {}
 
-    // Fire-and-forget to Formspree for your records
-    fetch(FORMSPREE_URL, {
+    // Record the signature in Formspree (exportable from the Formspree dashboard).
+    // keepalive lets the request finish even after the page redirects; we wait up
+    // to 4s for it, but a network blip never blocks the visitor.
+    const record = fetch(FORMSPREE_URL, {
       method: 'POST',
+      keepalive: true,
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     }).catch(() => {});
@@ -419,9 +492,11 @@
     document.getElementById('main-form').style.transition = 'opacity 0.25s ease';
     document.getElementById('redirect-overlay').classList.add('visible');
 
-    setTimeout(function() {
+    const minDelay = new Promise(r => setTimeout(r, 1200));
+    const maxWait  = new Promise(r => setTimeout(r, 4000));
+    Promise.all([minDelay, Promise.race([record, maxWait])]).then(function() {
       window.location.replace(BIOSUITE_URL);
-    }, 1200);
+    });
   }
 </script>
 

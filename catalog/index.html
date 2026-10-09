@@ -130,7 +130,15 @@ footer { border-top:0.5px solid rgba(255,255,255,0.05); padding:40px 48px; displ
 (function(){
   var preview = window.location.search.indexOf("preview=1") !== -1;
   var agreed = false;
-  try { agreed = localStorage.getItem("hpc_nda_agreed_v1") === "1"; } catch(e) {}
+  // Signers are remembered on this device for 90 days (keys shared with /nda/ and /catalog/)
+  try {
+    if (localStorage.getItem("hpc_nda_agreed_v1") === "1") {
+      var t = +localStorage.getItem("hpc_nda_signed_at");
+      if (!t) { localStorage.setItem("hpc_nda_signed_at", String(Date.now())); t = Date.now(); }
+      agreed = Date.now() - t < 90 * 864e5;
+      if (!agreed) { localStorage.removeItem("hpc_nda_agreed_v1"); localStorage.removeItem("hpc_nda_signed_at"); }
+    }
+  } catch(e) {}
   if (agreed || preview) {
     document.getElementById("gate").style.display = "none";
   }
